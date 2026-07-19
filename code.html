@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Gaurav Singh - ML Engineer &amp; Full-Stack Architect</title>
+    <title>Gaurav Singh - Portfolio</title>
     <meta name="description"
         content="Portfolio of Gaurav Singh - ML Engineer, Full-Stack Architect, and Open Source Contributor at VIT Vellore.">
     <link
@@ -348,14 +348,17 @@
         }
 
         \n
+
         /* Bio-SentinelX: translate left slightly + zoom */
         .proj-sentinel:hover .project-img {
             transform: translateX(-10px) scale(1.06);
         }
+
         /* Arogya AI: translate up slightly + zoom */
         .proj-arogya:hover .project-img {
             transform: translateY(-8px) scale(1.06);
         }
+
         /* ShakeAlert: subtle rotation tilt + zoom (seismic effect) */
         .proj-shake:hover .project-img {
             transform: rotate(2deg) scale(1.08);
@@ -367,26 +370,29 @@
             color: var(--primary) !important;
             transition: all 0.3s ease;
         }
+
         .btn-sentinel-live:hover {
             background: var(--brand) !important;
             color: #ffffff !important;
         }
-        
+
         .btn-arogya-live {
             background: var(--outline) !important;
             color: var(--primary) !important;
             transition: all 0.3s ease;
         }
+
         .btn-arogya-live:hover {
             background: #10b981 !important;
             color: #ffffff !important;
         }
-        
+
         .btn-shake-live {
             background: var(--outline) !important;
             color: var(--primary) !important;
             transition: all 0.3s ease;
         }
+
         .btn-shake-live:hover {
             background: #ef4444 !important;
             color: #ffffff !important;
@@ -399,26 +405,29 @@
             color: var(--primary) !important;
             transition: all 0.3s ease;
         }
+
         .btn-sentinel-live:hover {
             background: var(--brand) !important;
             color: #ffffff !important;
         }
-        
+
         .btn-arogya-live {
             background: var(--outline) !important;
             color: var(--primary) !important;
             transition: all 0.3s ease;
         }
+
         .btn-arogya-live:hover {
             background: #10b981 !important;
             color: #ffffff !important;
         }
-        
+
         .btn-shake-live {
             background: var(--outline) !important;
             color: var(--primary) !important;
             transition: all 0.3s ease;
         }
+
         .btn-shake-live:hover {
             background: #ef4444 !important;
             color: #ffffff !important;
@@ -437,29 +446,36 @@
             scrollbar-width: thin;
             scrollbar-color: var(--outline) transparent;
         }
-        
+
         /* Branded form element highlights */
         body {
             accent-color: var(--brand);
         }
-        
+
         /* Non-aggressive user form validation after interaction */
-        #contact-form input:user-invalid, 
+        #contact-form input:user-invalid,
         #contact-form textarea:user-invalid {
             border-color: #ef4444 !important;
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
         }
-        #contact-form input:user-valid, 
+
+        #contact-form input:user-valid,
         #contact-form textarea:user-valid {
             border-color: #10b981 !important;
         }
-        
+
         /* Compositor-driven native CSS Scroll progress timeline */
         @supports (animation-timeline: scroll()) {
             @keyframes scroll-progress-anim {
-                from { transform: scaleX(0); }
-                to { transform: scaleX(1); }
+                from {
+                    transform: scaleX(0);
+                }
+
+                to {
+                    transform: scaleX(1);
+                }
             }
+
             #scroll-progress {
                 width: 100% !important;
                 transform-origin: left;
@@ -467,7 +483,7 @@
                 animation-timeline: scroll(root);
             }
         }
-        
+
         /* Native CSS GPU-accelerated Scroll Reveal Animations */
         @media (prefers-reduced-motion: no-preference) {
             @supports ((animation-timeline: view()) and (animation-range: entry)) {
@@ -476,11 +492,13 @@
                         opacity: 0.2;
                         transform: translateY(14px);
                     }
+
                     to {
                         opacity: 1;
                         transform: translateY(0);
                     }
                 }
+
                 .reveal-on-scroll {
                     animation: reveal-card auto both;
                     animation-timeline: view();
@@ -501,18 +519,21 @@
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
                 }
             }
+
             #main-header {
                 animation: shrink-header auto linear both;
                 animation-timeline: scroll(root);
                 animation-range: 0px 80px;
             }
         }
-        
+
         /* Scrollability Affordance Hints inside search palette results */
         #cmd-results-wrapper {
             position: relative;
         }
-        .indicator-top, .indicator-bottom {
+
+        .indicator-top,
+        .indicator-bottom {
             position: absolute;
             left: 0;
             right: 0;
@@ -522,35 +543,40 @@
             pointer-events: none;
             z-index: 10;
         }
+
         .indicator-top {
             top: 0;
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
         }
+
         .indicator-bottom {
             bottom: 0;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
         }
-        
+
         @supports (container-type: scroll-state) {
             #cmd-results {
                 container-type: scroll-state;
             }
+
             @container scroll-state(scrollable: top) {
                 .indicator-top {
                     opacity: 1 !important;
                 }
             }
+
             @container scroll-state(scrollable: bottom) {
                 .indicator-bottom {
                     opacity: 1 !important;
                 }
             }
         }
-        
+
         /* Fallback classes toggled by IntersectionObserver */
         .scrolled-down .indicator-top {
             opacity: 1 !important;
         }
+
         .can-scroll-down .indicator-bottom {
             opacity: 1 !important;
         }
@@ -561,13 +587,16 @@
             position: relative;
             cursor: crosshair;
         }
+
         .reveal-container .base-layer {
             filter: grayscale(100%) brightness(35%);
             transition: filter 0.4s ease;
         }
+
         .reveal-container:hover .base-layer {
             filter: grayscale(100%) brightness(48%);
         }
+
         .reveal-container .reveal-layer {
             position: absolute;
             top: 0;
@@ -580,9 +609,10 @@
             clip-path: circle(0px at var(--x) var(--y));
             transition: clip-path 0.18s ease-out;
             will-change: clip-path;
-            transform: translate3d(0,0,0);
+            transform: translate3d(0, 0, 0);
             backface-visibility: hidden;
         }
+
         .reveal-container:hover .reveal-layer {
             clip-path: circle(70px at var(--x) var(--y));
         }
@@ -590,23 +620,40 @@
 
         /* ── Dramatic circular clip-path wipe View Transition for theme toggles ── */
         @keyframes vt-reveal {
-            from { clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%)); }
-            to   { clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+            from {
+                clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%));
+            }
+
+            to {
+                clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%));
+            }
         }
+
         @keyframes vt-fadeout {
-            from { opacity: 1; }
-            to   { opacity: 0; }
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
         }
+
         ::view-transition-old(root) {
             animation: vt-fadeout 0.35s ease-in forwards;
         }
+
         ::view-transition-new(root) {
             animation: vt-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
+
         @media (prefers-reduced-motion: reduce) {
+
             ::view-transition-group(*),
             ::view-transition-old(*),
-            ::view-transition-new(*) { animation: none !important; }
+            ::view-transition-new(*) {
+                animation: none !important;
+            }
         }
 
 
@@ -616,39 +663,45 @@
             transition: transform 0.22s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.22s ease;
             will-change: transform, box-shadow;
             backface-visibility: hidden;
-            transform: translate3d(0,0,0);
+            transform: translate3d(0, 0, 0);
         }
+
         .bento-card:hover {
-            box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
         }
 
         /* ── Native transition styling for command palette dialog top-layer ── */
         dialog#command-palette {
             transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+                display 0.3s allow-discrete, overlay 0.3s allow-discrete;
             opacity: 0;
             transform: scale(0.88) translateY(-24px);
         }
+
         dialog#command-palette[open] {
             opacity: 1;
             transform: scale(1) translateY(0);
         }
+
         @starting-style {
             dialog#command-palette[open] {
                 opacity: 0;
                 transform: scale(0.88) translateY(-24px);
             }
         }
+
         dialog#command-palette::backdrop {
             background: rgba(0, 0, 0, 0);
             backdrop-filter: blur(0px);
             transition: background 0.35s ease, backdrop-filter 0.35s ease,
-                        display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+                display 0.3s allow-discrete, overlay 0.3s allow-discrete;
         }
+
         dialog#command-palette[open]::backdrop {
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px) saturate(1.4);
         }
+
         @starting-style {
             dialog#command-palette[open]::backdrop {
                 background: rgba(0, 0, 0, 0);
@@ -669,6 +722,7 @@
             position: relative;
             view-timeline: --banner-vt;
         }
+
         .banner-parallax-img {
             width: 100%;
             height: 140%;
@@ -676,19 +730,29 @@
             display: block;
             will-change: transform;
         }
+
         @supports ((animation-timeline: view()) and (animation-range: entry)) {
             .banner-parallax-img {
                 animation: banner-parallax linear both;
                 animation-timeline: --banner-vt;
                 animation-range: entry 0% exit 100%;
             }
+
             @keyframes banner-parallax {
-                from { transform: translateY(-18%); }
-                to   { transform: translateY(12%); }
+                from {
+                    transform: translateY(-18%);
+                }
+
+                to {
+                    transform: translateY(12%);
+                }
             }
         }
+
         @media (prefers-reduced-motion: reduce) {
-            .banner-parallax-img { animation: none; }
+            .banner-parallax-img {
+                animation: none;
+            }
         }
 
         /* ═══════════════════════════════════════════════════
@@ -697,6 +761,7 @@
         .skill-anchor {
             anchor-name: var(--anchor-name);
         }
+
         .skill-tip {
             position: fixed;
             position-anchor: var(--anchor-name);
@@ -717,19 +782,27 @@
             white-space: normal;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
             /* Animation */
             opacity: 0;
             transition: opacity 0.2s ease, display 0.2s allow-discrete, overlay 0.2s allow-discrete;
         }
+
         @starting-style {
-            .skill-tip { opacity: 0; }
+            .skill-tip {
+                opacity: 0;
+            }
         }
-        .skill-tip:popover-open { opacity: 1; }
+
+        .skill-tip:popover-open {
+            opacity: 1;
+        }
+
         @position-try --tip-below {
             top: anchor(bottom);
             translate: 0 8px;
         }
+
         /* Show tooltip on hover of its anchor via :has() */
         :root:has(.skill-anchor:hover) .skill-tip {
             /* Fallback display for browsers without popover=hint interest invoker */
@@ -750,8 +823,10 @@
             gap: 10px;
             pointer-events: none;
         }
+
         .section-nav-dot {
-            width: 6px; height: 6px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: var(--outline);
             transition: background 0.3s, height 0.3s, border-radius 0.3s;
@@ -761,17 +836,22 @@
             padding: 0;
             display: block;
         }
+
         .section-nav-dot.active {
             background: var(--primary);
             height: 18px;
             border-radius: 3px;
         }
-        @media (max-width: 900px) {
-            .section-nav { display: none; }
-        }
 
+        @media (max-width: 900px) {
+            .section-nav {
+                display: none;
+            }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&amp;family=Encode+Sans:wdth,wght@125,100..900&amp;family=Italiana&amp;family=Space+Grotesk:wght@300..700&amp;family=Syne:wght@400..800&amp;family=Yeseva+One&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&amp;family=Encode+Sans:wdth,wght@125,100..900&amp;family=Italiana&amp;family=Space+Grotesk:wght@300..700&amp;family=Syne:wght@400..800&amp;family=Yeseva+One&amp;display=swap"
+        rel="stylesheet">
 
     <!-- Speculation Rules API for zero-latency preloading on hover -->
     <script type="speculationrules">
@@ -798,12 +878,12 @@
 
     <!-- Section Navigation Dots (right-side fixed) -->
     <nav class="section-nav" aria-label="Section navigation">
-        <button class="section-nav-dot active" data-target="#about"   title="About"></button>
-        <button class="section-nav-dot"        data-target="#projects" title="Projects"></button>
-        <button class="section-nav-dot"        data-target="#experience" title="Experience"></button>
-        <button class="section-nav-dot"        data-target="#stacks"  title="Skills"></button>
-        <button class="section-nav-dot"        data-target="#awards"  title="Awards"></button>
-        <button class="section-nav-dot"        data-target="#contact" title="Contact"></button>
+        <button class="section-nav-dot active" data-target="#about" title="About"></button>
+        <button class="section-nav-dot" data-target="#projects" title="Projects"></button>
+        <button class="section-nav-dot" data-target="#experience" title="Experience"></button>
+        <button class="section-nav-dot" data-target="#stacks" title="Skills"></button>
+        <button class="section-nav-dot" data-target="#awards" title="Awards"></button>
+        <button class="section-nav-dot" data-target="#contact" title="Contact"></button>
     </nav>
 
     <div id="scroll-progress"
@@ -867,7 +947,7 @@
         <!-- BANNER (Parallax) -->
         <div class="banner-parallax-wrapper banner-fade">
             <img alt="Pixel-art waterfall landscape" class="banner-parallax-img"
-                src="https://media.giphy.com/media/L2XkEUt61Vla0/giphy.gif">
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWwtFzhrfwN2Tp7Cd9HkJDmkRu1hKP6xQkCxOXdq6dbTSaLvAb2i-RBIiim58yFI32YheGoLIoDeaQtxQ-7MiuA6Szdcgh8NxavZ6HcOq838OxOkbQso2HZblKDHNPGfePbqoclnDUTof_R7nmuHPAWdaaljgr4WgSlvkgSzxU8vsBIZ5Toas9_Jqm6Z8hTyw-pGNV6kLJ0FwDdA8FNDBTiZJ-WQLF-rteW0vPbJxuUT5gKp2haBzlrveIPvqE_kuj4A">
         </div>
 
         <!-- PROFILE -->
@@ -916,19 +996,24 @@
                             class="material-symbols-outlined" style="font-size:15px">terminal</span>LeetCode</a>
                     <button id="ai-summarize-btn" class="pill-tag nav-sound-link"
                         style="display:none !important;padding:9px 18px;font-size:.78rem;font-weight:500;align-items:center;gap:8px;text-decoration:none;background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--primary);cursor:pointer;border:1px solid var(--outline);border-radius:9999px;">
-                        <span class="material-symbols-outlined" style="font-size:15px;color:var(--brand);">smart_toy</span>
+                        <span class="material-symbols-outlined"
+                            style="font-size:15px;color:var(--brand);">smart_toy</span>
                         <span id="ai-btn-text">AI Summarize</span>
                     </button>
                 </div>
-                
+
                 <!-- Collapsible AI Summary Panel -->
-                <div id="ai-summary-card" class="bento-card reveal-on-scroll" style="display:none;margin-top:14px;padding:16px;font-size:0.8rem;line-height:1.6;border-color:var(--brand);background:color-mix(in srgb,var(--surface) 90%,transparent);">
-                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid var(--outline);padding-bottom:6px;">
+                <div id="ai-summary-card" class="bento-card reveal-on-scroll"
+                    style="display:none;margin-top:14px;padding:16px;font-size:0.8rem;line-height:1.6;border-color:var(--brand);background:color-mix(in srgb,var(--surface) 90%,transparent);">
+                    <div
+                        style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid var(--outline);padding-bottom:6px;">
                         <span style="font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px;">
-                            <span class="material-symbols-outlined" style="font-size:16px;color:var(--brand);">smart_toy</span>
+                            <span class="material-symbols-outlined"
+                                style="font-size:16px;color:var(--brand);">smart_toy</span>
                             Local Gemini Nano Summary
                         </span>
-                        <button onclick="document.getElementById('ai-summary-card').style.display='none'" style="background:transparent;border:none;color:var(--secondary);cursor:pointer;font-size:0.8rem;">[Close]</button>
+                        <button onclick="document.getElementById('ai-summary-card').style.display='none'"
+                            style="background:transparent;border:none;color:var(--secondary);cursor:pointer;font-size:0.8rem;">[Close]</button>
                     </div>
                     <div id="ai-summary-text" style="color:var(--on-surface);">Initializing model...</div>
                 </div>
@@ -969,7 +1054,8 @@
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
                 Certifications <span class="section-rule"></span></h3>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px">
-                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl"
+                    style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">verified</span>
                     <div>
@@ -979,7 +1065,8 @@
                             Engineer &middot; Google Cloud &middot; 2026</div>
                     </div>
                 </div>
-                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl"
+                    style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">smart_toy</span>
                     <div>
@@ -988,7 +1075,8 @@
                         <div style="font-size:.6rem;color:var(--secondary);margin-top:2px">IBM &middot; 2026</div>
                     </div>
                 </div>
-                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl"
+                    style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">psychology</span>
                     <div>
@@ -998,7 +1086,8 @@
                             2026</div>
                     </div>
                 </div>
-                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl"
+                    style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">cloud</span>
                     <div>
@@ -1008,7 +1097,8 @@
                             Foundations &middot; Oracle &middot; 2025</div>
                     </div>
                 </div>
-                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl"
+                    style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">search</span>
                     <div>
@@ -1026,7 +1116,6 @@
         <section style="margin-bottom:56px" id="projects">
 
             <h3
-
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
 
                 Projects <span class="section-rule"></span></h3>
@@ -1038,7 +1127,6 @@
                 <!-- Bio-SentinelX -->
 
                 <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-sentinel"
-
                     style="overflow:hidden;transition:all 0.4s ease-in-out;">
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
@@ -1047,57 +1135,92 @@
 
                             <div>
 
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+                                <div
+                                    style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
 
                                     <div>
 
-                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+                                        <div
+                                            style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
 
                                             Bio-SentinelX</div>
 
-                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Capstone Research &middot; Dec 2025 &ndash; Mar 2026</div>
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Capstone
+                                            Research &middot; Dec 2025 &ndash; Mar 2026</div>
 
                                     </div>
 
                                     <div>
 
-                                        <span class="award-badge" style="background:rgba(151, 69, 245, 0.12);color:#9745F5;font-weight:700;display:inline-block;padding:3px 10px;">Winner at NIT Durgapur Hackathon</span>
+                                        <span class="award-badge"
+                                            style="background:rgba(151, 69, 245, 0.12);color:#9745F5;font-weight:700;display:inline-block;padding:3px 10px;">Winner
+                                            at NIT Durgapur Hackathon</span>
 
                                     </div>
 
                                 </div>
 
-                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+                                <ul
+                                    style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Engineered</span> multi-provider LLM orchestration middleware (Gemini 2.0, Groq Llama 3, Claude Sonnet, OpenRouter, Ollama) with <span class="kw">CoT reasoning</span>, automatic provider failover, and <span class="kw">LRU prompt caching</span> &mdash; reducing end-to-end inference latency by <span class="kw">40%</span>.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Engineered</span> multi-provider LLM orchestration middleware
+                                            (Gemini 2.0, Groq Llama 3, Claude Sonnet, OpenRouter, Ollama) with <span
+                                                class="kw">CoT reasoning</span>, automatic provider failover, and <span
+                                                class="kw">LRU prompt caching</span> &mdash; reducing end-to-end
+                                            inference latency by <span class="kw">40%</span>.</span></li>
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Architected</span> dual-embedding <span class="kw">RAG pipeline</span> (Supabase pgvector, hybrid dense + sparse retrieval, TF-IDF chunking, 3-tier context memory) with real-time retrieval across <span class="kw">OpenAlex (200M+ works)</span>, PubMed, WHO/CDC, ClinicalTrials.gov.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Architected</span> dual-embedding <span class="kw">RAG
+                                                pipeline</span> (Supabase pgvector, hybrid dense + sparse retrieval,
+                                            TF-IDF chunking, 3-tier context memory) with real-time retrieval across
+                                            <span class="kw">OpenAlex (200M+ works)</span>, PubMed, WHO/CDC,
+                                            ClinicalTrials.gov.</span></li>
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Deployed</span> stacked ensemble (XGBoost + RF + NN, <span class="kw">98.37% accuracy</span>, 11 classes) with in-browser <span class="kw">TFLite quantised inference</span>; containerised via Docker + Kafka, shipping <span class="kw">155+ zero-downtime releases</span> via GitHub Actions CI/CD.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Deployed</span> stacked ensemble (XGBoost + RF + NN, <span
+                                                class="kw">98.37% accuracy</span>, 11 classes) with in-browser <span
+                                                class="kw">TFLite quantised inference</span>; containerised via Docker +
+                                            Kafka, shipping <span class="kw">155+ zero-downtime releases</span> via
+                                            GitHub Actions CI/CD.</span></li>
 
                                 </ul>
 
                             </div>
 
-                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+                            <div
+                                style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
 
                                 <div style="display:flex;flex-wrap:wrap;gap:4px">
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">React 19</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">React 19</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">FastAPI</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">FastAPI</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Supabase</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Supabase</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">TFLite</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">TFLite</span>
 
                                 </div>
 
                                 <div style="display:flex;gap:8px">
 
-                                    <a href="https://github.com/gaur-avvv/Bio-SentinelX" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+                                    <a href="https://github.com/gaur-avvv/Bio-SentinelX" target="_blank"
+                                        rel="noopener noreferrer" class="pill-tag nav-sound-link"
+                                        style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github
+                                        &#x2197;</a>
 
-                                    <a href="https://bio-sentinel-x.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-sentinel-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+                                    <a href="https://bio-sentinel-x.vercel.app" target="_blank"
+                                        rel="noopener noreferrer" class="nav-sound-link btn-sentinel-live"
+                                        style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live
+                                        &#x2197;</a>
 
                                 </div>
 
@@ -1107,17 +1230,20 @@
 
                         <div class="md:col-span-5 flex items-center justify-center">
 
-                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;position:relative;">
+                            <div class="project-img-wrapper reveal-container"
+                                style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;position:relative;">
 
                                 <!-- Base Layer (Darkened/Grayscale) -->
 
-                                <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img base-layer"
+                                    style="width:100%;height:100%;object-fit:cover;display:block;">
 
                                 <!-- Reveal Layer (Full Color Spotlight) -->
 
                                 <div class="reveal-layer">
 
-                                    <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                    <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img"
+                                        style="width:100%;height:100%;object-fit:cover;display:block;">
 
                                 </div>
 
@@ -1134,7 +1260,6 @@
                 <!-- Arogya AI -->
 
                 <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-arogya"
-
                     style="overflow:hidden;transition:all 0.4s ease-in-out;">
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
@@ -1143,51 +1268,84 @@
 
                             <div>
 
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+                                <div
+                                    style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
 
                                     <div>
 
-                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+                                        <div
+                                            style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
 
                                             Arogya AI</div>
 
-                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Research Project &middot; Aug 2025 &ndash; Nov 2025</div>
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Research
+                                            Project &middot; Aug 2025 &ndash; Nov 2025</div>
 
                                     </div>
 
                                 </div>
 
-                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+                                <ul
+                                    style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Designed</span> a dual-engine AI architecture fusing a <span class="kw">Random Forest classifier (99%+ accuracy</span>, 819 features, SMOTE-balanced 4,201&ndash;20,748 samples) with <span class="kw">Gemini 2.5 Pro</span> for contextualised, multi-label prediction across <span class="kw">399 ICD-mapped diseases</span>.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Designed</span> a dual-engine AI architecture fusing a <span
+                                                class="kw">Random Forest classifier (99%+ accuracy</span>, 819 features,
+                                            SMOTE-balanced 4,201&ndash;20,748 samples) with <span class="kw">Gemini 2.5
+                                                Pro</span> for contextualised, multi-label prediction across <span
+                                                class="kw">399 ICD-mapped diseases</span>.</span></li>
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Developed</span> an 807-dim <span class="kw">TF-IDF NLP vectorisation</span> pipeline with high-precision cosine similarity matching, incorporating <span class="kw">XAI/SHAP</span> explainability to provide transparent insights into complex medical model predictions.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Developed</span> an 807-dim <span class="kw">TF-IDF NLP
+                                                vectorisation</span> pipeline with high-precision cosine similarity
+                                            matching, incorporating <span class="kw">XAI/SHAP</span> explainability to
+                                            provide transparent insights into complex medical model predictions.</span>
+                                    </li>
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Engineered</span> secure <span class="kw">RBAC</span> practitioner and patient portals, implementing clinical safety guardrails that automatically <span class="kw">mask low-confidence predictions</span> to ensure patient data integrity.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Engineered</span> secure <span class="kw">RBAC</span>
+                                            practitioner and patient portals, implementing clinical safety guardrails
+                                            that automatically <span class="kw">mask low-confidence predictions</span>
+                                            to ensure patient data integrity.</span></li>
 
                                 </ul>
 
                             </div>
 
-                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+                            <div
+                                style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
 
                                 <div style="display:flex;flex-wrap:wrap;gap:4px">
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Scikit-learn</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Scikit-learn</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Gemini 2.5 Pro</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Gemini 2.5
+                                        Pro</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SHAP</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SHAP</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SMOTE</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SMOTE</span>
 
                                 </div>
 
                                 <div style="display:flex;gap:8px">
 
-                                    <a href="https://github.com/gaur-avvv/Arogya-AI" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+                                    <a href="https://github.com/gaur-avvv/Arogya-AI" target="_blank"
+                                        rel="noopener noreferrer" class="pill-tag nav-sound-link"
+                                        style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github
+                                        &#x2197;</a>
 
-                                    <a href="https://arogya-ai-mu.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-arogya-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+                                    <a href="https://arogya-ai-mu.vercel.app" target="_blank" rel="noopener noreferrer"
+                                        class="nav-sound-link btn-arogya-live"
+                                        style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live
+                                        &#x2197;</a>
 
                                 </div>
 
@@ -1197,17 +1355,20 @@
 
                         <div class="md:col-span-5 flex items-center justify-center">
 
-                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;position:relative;">
+                            <div class="project-img-wrapper reveal-container"
+                                style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;position:relative;">
 
                                 <!-- Base Layer (Darkened/Grayscale) -->
 
-                                <img src="arogya-ai.png" alt="Arogya AI" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <img src="arogya-ai.png" alt="Arogya AI" class="project-img base-layer"
+                                    style="width:100%;height:100%;object-fit:cover;display:block;">
 
                                 <!-- Reveal Layer (Full Color Spotlight) -->
 
                                 <div class="reveal-layer">
 
-                                    <img src="arogya-ai.png" alt="Arogya AI" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                    <img src="arogya-ai.png" alt="Arogya AI" class="project-img"
+                                        style="width:100%;height:100%;object-fit:cover;display:block;">
 
                                 </div>
 
@@ -1224,7 +1385,6 @@
                 <!-- ShakeAlert -->
 
                 <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-shake"
-
                     style="overflow:hidden;transition:all 0.4s ease-in-out;">
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
@@ -1233,51 +1393,80 @@
 
                             <div>
 
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+                                <div
+                                    style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
 
                                     <div>
 
-                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+                                        <div
+                                            style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
 
                                             ShakeAlert</div>
 
-                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">CDMM VIT Internship &middot; May 2025 &ndash; Jul 2025</div>
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">CDMM VIT
+                                            Internship &middot; May 2025 &ndash; Jul 2025</div>
 
                                     </div>
 
                                 </div>
 
-                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+                                <ul
+                                    style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Built</span> a full-stack <span class="kw">earthquake early warning system</span> for India &mdash; low-latency seismic telemetry parsing with real-time <span class="kw">Azure Maps</span> coordinate dispatch and alerting.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Built</span> a full-stack <span class="kw">earthquake early
+                                                warning system</span> for India &mdash; low-latency seismic telemetry
+                                            parsing with real-time <span class="kw">Azure Maps</span> coordinate
+                                            dispatch and alerting.</span></li>
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Integrated</span> <span class="kw">Firebase Firestore</span> streaming pipelines with <span class="kw">Pandas</span>-based signal anomaly identification against live seismic sensor feeds from India's NDMA network.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Integrated</span> <span class="kw">Firebase Firestore</span>
+                                            streaming pipelines with <span class="kw">Pandas</span>-based signal anomaly
+                                            identification against live seismic sensor feeds from India's NDMA
+                                            network.</span></li>
 
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Implemented</span> <span class="kw">Python Seismology APIs</span> to classify P-wave and S-wave arrivals, enabling sub-second alert dispatch to potentially affected regions.</span></li>
+                                    <li style="display:flex;gap:8px"><span
+                                            style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span
+                                                class="kw">Implemented</span> <span class="kw">Python Seismology
+                                                APIs</span> to classify P-wave and S-wave arrivals, enabling sub-second
+                                            alert dispatch to potentially affected regions.</span></li>
 
                                 </ul>
 
                             </div>
 
-                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+                            <div
+                                style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
 
                                 <div style="display:flex;flex-wrap:wrap;gap:4px">
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Firebase</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Firebase</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Azure Maps</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Azure Maps</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Pandas</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Pandas</span>
 
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Python</span>
+                                    <span class="pill-tag"
+                                        style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Python</span>
 
                                 </div>
 
                                 <div style="display:flex;gap:8px">
 
-                                    <a href="https://github.com/rohit29032005/detectordemo" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+                                    <a href="https://github.com/rohit29032005/detectordemo" target="_blank"
+                                        rel="noopener noreferrer" class="pill-tag nav-sound-link"
+                                        style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github
+                                        &#x2197;</a>
 
-                                    <a href="https://detectordemo.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-shake-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+                                    <a href="https://detectordemo.vercel.app" target="_blank" rel="noopener noreferrer"
+                                        class="nav-sound-link btn-shake-live"
+                                        style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live
+                                        &#x2197;</a>
 
                                 </div>
 
@@ -1287,17 +1476,20 @@
 
                         <div class="md:col-span-5 flex items-center justify-center">
 
-                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;position:relative;">
+                            <div class="project-img-wrapper reveal-container"
+                                style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;position:relative;">
 
                                 <!-- Base Layer (Darkened/Grayscale) -->
 
-                                <img src="shake-alert.png" alt="ShakeAlert" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <img src="shake-alert.png" alt="ShakeAlert" class="project-img base-layer"
+                                    style="width:100%;height:100%;object-fit:cover;display:block;">
 
                                 <!-- Reveal Layer (Full Color Spotlight) -->
 
                                 <div class="reveal-layer">
 
-                                    <img src="shake-alert.png" alt="ShakeAlert" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                    <img src="shake-alert.png" alt="ShakeAlert" class="project-img"
+                                        style="width:100%;height:100%;object-fit:cover;display:block;">
 
                                 </div>
 
@@ -1315,7 +1507,7 @@
 
         </section>
 
-        
+
 
         <!-- EXPERIENCE -->
         <section style="margin-bottom:56px" id="experience">
@@ -1323,7 +1515,8 @@
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
                 Experience <span class="section-rule"></span></h3>
             <div style="display:flex;flex-direction:column;gap:28px">
-                <div class="reveal-on-scroll" style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
+                <div class="reveal-on-scroll"
+                    style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
                     <div
                         style="position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--primary)">
                     </div>
@@ -1344,7 +1537,8 @@
                             style="color:var(--on-surface)">MapQuest &ndash; The GIS Treasure Hunt</strong> (Sept 2025)
                         as the club's flagship event.</p>
                 </div>
-                <div class="reveal-on-scroll" style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
+                <div class="reveal-on-scroll"
+                    style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
                     <div
                         style="position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;border:1px solid var(--outline);background:var(--bg)">
                     </div>
@@ -1364,7 +1558,8 @@
                         earthquake early warning system for India. Built telemetry parsing pipelines and Pandas-based
                         signal anomaly identification from live seismic feeds.</p>
                 </div>
-                <div class="reveal-on-scroll" style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
+                <div class="reveal-on-scroll"
+                    style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
                     <div
                         style="position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;border:1px solid var(--outline);background:var(--bg)">
                     </div>
@@ -1387,12 +1582,18 @@
 
         <!-- ── Key ML skill tags with anchor-positioned tooltips ── -->
         <!-- Popover tooltip elements (placed outside the scroll container per Popover API spec) -->
-        <span id="tip-pytorch" class="skill-tip" popover="hint" role="tooltip">Deep learning framework — used in Bio-SentinelX ensemble & Arogya AI DenseNet training.</span>
-        <span id="tip-rag" class="skill-tip" popover="hint" role="tooltip">Retrieval-Augmented Generation — powers Bio-SentinelX's dual-embedding medical search across 200M+ papers.</span>
-        <span id="tip-langchain" class="skill-tip" popover="hint" role="tooltip">LLM orchestration library — used for CoT reasoning chains and provider failover logic.</span>
-        <span id="tip-lora" class="skill-tip" popover="hint" role="tooltip">Parameter-Efficient Fine-Tuning — enables fine-tuning large models with minimal compute.</span>
-        <span id="tip-tflite" class="skill-tip" popover="hint" role="tooltip">TensorFlow Lite — runs quantised Bio-SentinelX model directly inside the browser.</span>
-        <span id="tip-faiss" class="skill-tip" popover="hint" role="tooltip">Facebook AI Similarity Search — used for blazing-fast approximate nearest-neighbor retrieval.</span>
+        <span id="tip-pytorch" class="skill-tip" popover="hint" role="tooltip">Deep learning framework — used in
+            Bio-SentinelX ensemble & Arogya AI DenseNet training.</span>
+        <span id="tip-rag" class="skill-tip" popover="hint" role="tooltip">Retrieval-Augmented Generation — powers
+            Bio-SentinelX's dual-embedding medical search across 200M+ papers.</span>
+        <span id="tip-langchain" class="skill-tip" popover="hint" role="tooltip">LLM orchestration library — used for
+            CoT reasoning chains and provider failover logic.</span>
+        <span id="tip-lora" class="skill-tip" popover="hint" role="tooltip">Parameter-Efficient Fine-Tuning — enables
+            fine-tuning large models with minimal compute.</span>
+        <span id="tip-tflite" class="skill-tip" popover="hint" role="tooltip">TensorFlow Lite — runs quantised
+            Bio-SentinelX model directly inside the browser.</span>
+        <span id="tip-faiss" class="skill-tip" popover="hint" role="tooltip">Facebook AI Similarity Search — used for
+            blazing-fast approximate nearest-neighbor retrieval.</span>
 
         <!-- SKILLS -->
         <section style="margin-bottom:56px" id="stacks">
@@ -1409,25 +1610,50 @@
                         <span style="display:inline-block;vertical-align:middle">ML / AI / LLM</span>
                     </div>
                     <div style="display:flex;flex-wrap:wrap;gap:6px">
-                        <span id="anchor-pytorch" class="pill-tag skill-anchor" style="--anchor-name:--anc-pytorch;padding:4px 10px;font-size:.7rem;border-radius:.375rem" popovertarget="tip-pytorch" popovertargetaction="show">PyTorch</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">TensorFlow/Keras</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Scikit-learn</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">XGBoost</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SMOTE</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SHAP</span>
-                        <span id="anchor-langchain" class="pill-tag skill-anchor" style="--anchor-name:--anc-langchain;padding:4px 10px;font-size:.7rem;border-radius:.375rem" popovertarget="tip-langchain" popovertargetaction="show">LangChain</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">LlamaIndex</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Hugging Face</span>
-                        <span id="anchor-rag" class="pill-tag skill-anchor" style="--anchor-name:--anc-rag;padding:4px 10px;font-size:.7rem;border-radius:.375rem" popovertarget="tip-rag" popovertargetaction="show">RAG</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Prompt Engineering</span>
-                        <span id="anchor-lora" class="pill-tag skill-anchor" style="--anchor-name:--anc-lora;padding:4px 10px;font-size:.7rem;border-radius:.375rem" popovertarget="tip-lora" popovertargetaction="show">LoRA/PEFT</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Agentic AI</span>
-                        <span id="anchor-tflite" class="pill-tag skill-anchor" style="--anchor-name:--anc-tflite;padding:4px 10px;font-size:.7rem;border-radius:.375rem" popovertarget="tip-tflite" popovertargetaction="show">TFLite</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Supabase pgvector</span>
-                        <span id="anchor-faiss" class="pill-tag skill-anchor" style="--anchor-name:--anc-faiss;padding:4px 10px;font-size:.7rem;border-radius:.375rem" popovertarget="tip-faiss" popovertargetaction="show">FAISS</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">BERT</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Transformers</span>
-                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Hybrid Retrieval</span>
+                        <span id="anchor-pytorch" class="pill-tag skill-anchor"
+                            style="--anchor-name:--anc-pytorch;padding:4px 10px;font-size:.7rem;border-radius:.375rem"
+                            popovertarget="tip-pytorch" popovertargetaction="show">PyTorch</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">TensorFlow/Keras</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Scikit-learn</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">XGBoost</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SMOTE</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SHAP</span>
+                        <span id="anchor-langchain" class="pill-tag skill-anchor"
+                            style="--anchor-name:--anc-langchain;padding:4px 10px;font-size:.7rem;border-radius:.375rem"
+                            popovertarget="tip-langchain" popovertargetaction="show">LangChain</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">LlamaIndex</span>
+                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Hugging
+                            Face</span>
+                        <span id="anchor-rag" class="pill-tag skill-anchor"
+                            style="--anchor-name:--anc-rag;padding:4px 10px;font-size:.7rem;border-radius:.375rem"
+                            popovertarget="tip-rag" popovertargetaction="show">RAG</span>
+                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Prompt
+                            Engineering</span>
+                        <span id="anchor-lora" class="pill-tag skill-anchor"
+                            style="--anchor-name:--anc-lora;padding:4px 10px;font-size:.7rem;border-radius:.375rem"
+                            popovertarget="tip-lora" popovertargetaction="show">LoRA/PEFT</span>
+                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Agentic
+                            AI</span>
+                        <span id="anchor-tflite" class="pill-tag skill-anchor"
+                            style="--anchor-name:--anc-tflite;padding:4px 10px;font-size:.7rem;border-radius:.375rem"
+                            popovertarget="tip-tflite" popovertargetaction="show">TFLite</span>
+                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Supabase
+                            pgvector</span>
+                        <span id="anchor-faiss" class="pill-tag skill-anchor"
+                            style="--anchor-name:--anc-faiss;padding:4px 10px;font-size:.7rem;border-radius:.375rem"
+                            popovertarget="tip-faiss" popovertargetaction="show">FAISS</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">BERT</span>
+                        <span class="pill-tag"
+                            style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Transformers</span>
+                        <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Hybrid
+                            Retrieval</span>
                     </div>
                 </div>
 
@@ -1444,15 +1670,26 @@
                                 <span style="display:inline-block;vertical-align:middle">MLOps / Cloud / Stack</span>
                             </div>
                             <div style="display:flex;flex-wrap:wrap;gap:6px">
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Docker</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Kafka</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Redis</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">FastAPI</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">GitHub Actions CI/CD</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">AWS (EC2, S3, Lambda)</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">GCP</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Railway</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Vercel</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Docker</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Kafka</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Redis</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">FastAPI</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">GitHub Actions
+                                    CI/CD</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">AWS (EC2, S3,
+                                    Lambda)</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">GCP</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Railway</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Vercel</span>
                             </div>
                         </div>
 
@@ -1465,19 +1702,33 @@
                                 <span style="display:inline-block;vertical-align:middle">Field of Interest</span>
                             </div>
                             <div style="display:flex;flex-wrap:wrap;gap:6px">
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">OS</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Linux</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Ubuntu</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Debian</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Arch Linux</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Kali Linux</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">WSL</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">PowerShell</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Sh</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Git Bash</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Windows Terminal</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Command Prompt</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Bash</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">OS</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Linux</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Ubuntu</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Debian</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Arch Linux</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Kali Linux</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">WSL</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">PowerShell</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Sh</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Git Bash</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Windows
+                                    Terminal</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Command Prompt</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Bash</span>
                             </div>
                         </div>
                     </div>
@@ -1490,26 +1741,44 @@
                                 style="font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);border-left:2px solid var(--brand);padding-left:8px;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;line-height:1">
                                 <span class="material-symbols-outlined"
                                     style="font-size:14px;color:var(--brand);line-height:1;display:inline-block;vertical-align:middle">database</span>
-                                <span style="display:inline-block;vertical-align:middle">Languages &amp; Databases</span>
+                                <span style="display:inline-block;vertical-align:middle">Languages &amp;
+                                    Databases</span>
                             </div>
                             <div style="display:flex;flex-wrap:wrap;gap:6px">
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SQLite</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">DynamoDB</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Firebase</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">MySQL</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Netlify</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Google Cloud</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Python</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">TypeScript/JS</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Java</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">C/C++</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SQL</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Bash</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">FrontEnd</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">HTML</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">CSS</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Javascript</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Backend</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SQLite</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">DynamoDB</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Firebase</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">MySQL</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Netlify</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Google Cloud</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Python</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">TypeScript/JS</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Java</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">C/C++</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">SQL</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Bash</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">FrontEnd</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">HTML</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">CSS</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Javascript</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Backend</span>
                             </div>
                         </div>
 
@@ -1522,10 +1791,18 @@
                                 <span style="display:inline-block;vertical-align:middle">Professional Skills</span>
                             </div>
                             <div style="display:flex;flex-wrap:wrap;gap:6px">
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Problem Solving</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Cross-functional Collaboration</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Agile Methodology</span>
-                                <span class="pill-tag" style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Technical Mentorship</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Problem
+                                    Solving</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Cross-functional
+                                    Collaboration</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Agile
+                                    Methodology</span>
+                                <span class="pill-tag"
+                                    style="padding:4px 10px;font-size:.7rem;border-radius:.375rem">Technical
+                                    Mentorship</span>
                             </div>
                         </div>
                     </div>
@@ -1630,19 +1907,22 @@
                     onerror="this.style.display='none';document.getElementById('gh-fallback').style.display='block'">
                 <!-- Fallback: activity graph banner -->
                 <div id="gh-fallback" style="display:none">
-                    <img id="gh-activity-graph" src="https://github-readme-activity-graph.vercel.app/graph?username=gaur-avvv&bg_color=000000&color=9745f5&line=9745f5&point=9745f5&hide_border=true"
+                    <img id="gh-activity-graph"
+                        src="https://github-readme-activity-graph.vercel.app/graph?username=gaur-avvv&bg_color=000000&color=9745f5&line=9745f5&point=9745f5&hide_border=true"
                         alt="GitHub activity graph" style="width:100%;border-radius:.5rem;display:block">
                 </div>
             </div>
             <!-- Streak stats row -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
                 <div class="bento-card reveal-on-scroll rounded-xl" style="padding:12px;overflow:hidden">
-                    <img id="gh-streak-stats" src="https://github-readme-streak-stats.herokuapp.com/?user=gaur-avvv&theme=dark&background=12121200&border=27272a&ring=9745f5&fire=9745f5&currStreakLabel=ffffff&sideLabels=a1a1aa&hide_border=true"
+                    <img id="gh-streak-stats"
+                        src="https://github-readme-streak-stats.herokuapp.com/?user=gaur-avvv&theme=dark&background=12121200&border=27272a&ring=9745f5&fire=9745f5&currStreakLabel=ffffff&sideLabels=a1a1aa&hide_border=true"
                         alt="GitHub streak stats" style="width:100%;height:auto;display:block;border-radius:.25rem"
                         onerror="this.parentElement.style.display='none'">
                 </div>
                 <div class="bento-card reveal-on-scroll rounded-xl" style="padding:12px;overflow:hidden">
-                    <img id="gh-readme-stats" src="https://github-readme-stats.vercel.app/api?username=gaur-avvv&show_icons=true&theme=dark&bg_color=12121200&border_color=27272a&title_color=ffffff&text_color=a1a1aa&icon_color=9745f5&hide_border=true&rank_icon=github&include_all_commits=true&count_private=true"
+                    <img id="gh-readme-stats"
+                        src="https://github-readme-stats.vercel.app/api?username=gaur-avvv&show_icons=true&theme=dark&bg_color=12121200&border_color=27272a&title_color=ffffff&text_color=a1a1aa&icon_color=9745f5&hide_border=true&rank_icon=github&include_all_commits=true&count_private=true"
                         alt="GitHub stats" style="width:100%;height:auto;display:block;border-radius:.25rem"
                         onerror="this.parentElement.style.display='none'">
                 </div>
@@ -1702,7 +1982,9 @@
                         </div>
                     </div>
                     <!-- Fully functional Web3Forms contact form handler -> delivers directly to email -->
-                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" toolname="send_contact_message" tooldescription="Sends a direct contact message to Gaurav Singh. Requires name, email, and message."
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
+                        toolname="send_contact_message"
+                        tooldescription="Sends a direct contact message to Gaurav Singh. Requires name, email, and message."
                         style="display:flex;flex-direction:column;gap:10px">
                         <!-- Web3Forms Access Key linked directly to user's email inbox -->
                         <input type="hidden" name="access_key" value="2825e609-64bc-4b67-b727-93f2b6b0076c">
@@ -1836,11 +2118,11 @@
                             style="font-size:16px">volume_up</span> Toggle Sounds</span>
                     <span style="color:var(--secondary);font-size:0.7rem;font-family:monospace">ON/OFF</span>
                 </div>
-                    <div class="sentinel-bottom" style="height:0;width:0;visibility:hidden;"></div>
-                </div>
-                <div class="indicator-bottom"></div>
+                <div class="sentinel-bottom" style="height:0;width:0;visibility:hidden;"></div>
             </div>
+            <div class="indicator-bottom"></div>
         </div>
+    </div>
     </dialog>
 
     <script>
@@ -1868,16 +2150,16 @@
                 }
 
                 function applyTheme(dark) {
-                    if (dark) { 
-                        document.documentElement.classList.add('dark'); 
-                        icon.innerText = 'light_mode'; 
-                    } else { 
-                        document.documentElement.classList.remove('dark'); 
-                        icon.innerText = 'dark_mode'; 
+                    if (dark) {
+                        document.documentElement.classList.add('dark');
+                        icon.innerText = 'light_mode';
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        icon.innerText = 'dark_mode';
                     }
                     try {
                         updateGitHubWidgetsTheme(dark);
-                    } catch (e) {}
+                    } catch (e) { }
                 }
                 var saved = localStorage.getItem('theme');
                 applyTheme(saved !== 'light');
@@ -1939,7 +2221,7 @@
                     localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
                     soundIcon.innerText = soundEnabled ? 'volume_up' : 'volume_off';
                     if (soundEnabled) {
-                        setTimeout(function() { playClickSound(660, 'triangle', 0.12, 0.06); }, 80);
+                        setTimeout(function () { playClickSound(660, 'triangle', 0.12, 0.06); }, 80);
                     } else {
                         playMuteSound();
                     }
@@ -2170,7 +2452,7 @@
                     });
                 }
 
-                
+
                 // ── Programmatic WebMCP tool registration for AI agents ──
                 var modelContext = document.modelContext || navigator.modelContext;
                 if (modelContext && 'registerTool' in modelContext) {
@@ -2254,7 +2536,7 @@
                         aiCard.scrollIntoView({ behavior: 'smooth' });
 
                         var promptText = "You are Gaurav Singh's AI assistant. Summarize why Gaurav is a top candidate for ML/AI roles in 2-3 sentences. Write ONLY the pitch. Do not add any chatter.";
-                        
+
                         if (typeof LanguageModel !== 'undefined') {
                             try {
                                 var availability = await LanguageModel.availability();
@@ -2268,7 +2550,7 @@
                                             });
                                         }
                                     });
-                                    
+
                                     aiText.textContent = "";
                                     var stream = session.promptStreaming(promptText);
                                     for await (var chunk of stream) {
@@ -2289,7 +2571,7 @@
                     });
                 }
 
-                
+
                 // ── Interactive Spotlight mouse tracking ──
                 document.querySelectorAll('.reveal-container').forEach(function (container) {
                     container.addEventListener('mousemove', function (e) {
@@ -2343,14 +2625,14 @@
                                 btn.style.setProperty('display', 'inline-flex', 'important');
                             }
                         }
-                    }).catch(function () {});
+                    }).catch(function () { });
                 }
 
                 // ── Live View Counter Dynamic Ticker ──
                 var liveView = document.getElementById('live-view-counter');
                 if (liveView) {
                     var count = 2895;
-                    setInterval(function() {
+                    setInterval(function () {
                         if (Math.random() > 0.45) {
                             count += Math.floor(Math.random() * 3) + 1;
                             liveView.textContent = count.toLocaleString();
@@ -2368,7 +2650,7 @@
                         var cy = r.top + r.height / 2;
                         var dx = (e.clientX - cx) / (r.width / 2);
                         var dy = (e.clientY - cy) / (r.height / 2);
-                        tiltFrame = requestAnimationFrame(function() {
+                        tiltFrame = requestAnimationFrame(function () {
                             card.style.transform = 'perspective(700px) rotateY(' + (dx * 5) + 'deg) rotateX(' + (-dy * 5) + 'deg) translateZ(6px)';
                         });
                     }, { passive: true });
@@ -2472,19 +2754,19 @@
                 loop();
                 // ── Section Navigation Dots ──
                 var navDots = document.querySelectorAll('.section-nav-dot');
-                var sectionDotObserver = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
+                var sectionDotObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
                             var id = '#' + entry.target.id;
-                            navDots.forEach(function(dot) {
+                            navDots.forEach(function (dot) {
                                 dot.classList.toggle('active', dot.dataset.target === id);
                             });
                         }
                     });
                 }, { rootMargin: '-40% 0px -50% 0px' });
-                document.querySelectorAll('section[id]').forEach(function(s) { sectionDotObserver.observe(s); });
-                navDots.forEach(function(dot) {
-                    dot.addEventListener('click', function() {
+                document.querySelectorAll('section[id]').forEach(function (s) { sectionDotObserver.observe(s); });
+                navDots.forEach(function (dot) {
+                    dot.addEventListener('click', function () {
                         var target = document.querySelector(dot.dataset.target);
                         if (target) target.scrollIntoView({ behavior: 'smooth' });
                     });
@@ -2492,11 +2774,11 @@
 
                 // ── Tooltip fallback: getBoundingClientRect for Firefox/Safari ──
                 if (!CSS.supports('anchor-name: --foo')) {
-                    document.querySelectorAll('.skill-anchor[popovertarget]').forEach(function(anchor) {
+                    document.querySelectorAll('.skill-anchor[popovertarget]').forEach(function (anchor) {
                         var tipId = anchor.getAttribute('popovertarget');
                         var tip = document.getElementById(tipId);
                         if (!tip) return;
-                        anchor.addEventListener('mouseenter', function() {
+                        anchor.addEventListener('mouseenter', function () {
                             var r = anchor.getBoundingClientRect();
                             tip.style.position = 'fixed';
                             tip.style.top = (r.top - 8) + 'px';
@@ -2505,7 +2787,7 @@
                             if (tip.showPopover) tip.showPopover();
                             else { tip.style.display = 'block'; tip.style.opacity = '1'; }
                         });
-                        anchor.addEventListener('mouseleave', function() {
+                        anchor.addEventListener('mouseleave', function () {
                             if (tip.hidePopover) tip.hidePopover();
                             else { tip.style.display = ''; tip.style.opacity = '0'; }
                         });
@@ -2517,8 +2799,8 @@
                     var bannerWrapper = document.querySelector('.banner-parallax-wrapper');
                     var bannerImg = document.querySelector('.banner-parallax-img');
                     if (bannerWrapper && bannerImg) {
-                        var bannerObs = new IntersectionObserver(function(entries) {
-                            entries.forEach(function(entry) {
+                        var bannerObs = new IntersectionObserver(function (entries) {
+                            entries.forEach(function (entry) {
                                 if (entry.isIntersecting) {
                                     window.addEventListener('scroll', onBannerScroll, { passive: true });
                                 } else {
