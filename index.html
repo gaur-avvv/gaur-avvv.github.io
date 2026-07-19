@@ -2818,6 +2818,46 @@
                     }
                 }
 
+
+                // ── Live Visitor Counter via CounterAPI ──
+                async function updateViews() {
+                    var viewEl = document.getElementById('view-count');
+                    if (!viewEl) return;
+
+                    var namespace = 'gaur-avvv-portfolio';
+                    var key = 'homepage';
+                    var storageKey = 'visited_' + namespace + '_' + key;
+
+                    // Don't count localhost / file:// visits
+                    var isLocal = location.hostname === 'localhost' ||
+                                  location.hostname === '127.0.0.1' ||
+                                  location.protocol === 'file:';
+
+                    var hasVisited = localStorage.getItem(storageKey);
+
+                    var url;
+                    if (!hasVisited && !isLocal) {
+                        url = 'https://api.counterapi.dev/v1/' + namespace + '/' + key + '/up';
+                        localStorage.setItem(storageKey, '1');
+                    } else {
+                        url = 'https://api.counterapi.dev/v1/' + namespace + '/' + key;
+                    }
+
+                    try {
+                        var r = await fetch(url);
+                        var d = await r.json();
+                        if (d && d.count != null) {
+                            viewEl.innerText = Number(d.count).toLocaleString();
+                        } else {
+                            viewEl.innerText = '—';
+                        }
+                    } catch (e) {
+                        viewEl.innerText = '—';
+                    }
+                }
+
+                updateViews();
+
             })();
     </script>
 </body>
