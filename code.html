@@ -582,25 +582,59 @@
         }
 
 
-        /* Smooth View Transition during theme switches */
-        ::view-transition-old(root),
+        /* ── Dramatic circular clip-path wipe View Transition for theme toggles ── */
+        @keyframes vt-reveal {
+            from { clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+            to   { clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+        }
+        @keyframes vt-fadeout {
+            from { opacity: 1; }
+            to   { opacity: 0; }
+        }
+        ::view-transition-old(root) {
+            animation: vt-fadeout 0.35s ease-in forwards;
+        }
         ::view-transition-new(root) {
-            animation-duration: 0.4s;
-            animation-timing-function: ease-in-out;
+            animation: vt-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         @media (prefers-reduced-motion: reduce) {
             ::view-transition-group(*),
             ::view-transition-old(*),
-            ::view-transition-new(*) {
-                animation: none !important;
-            }
+            ::view-transition-new(*) { animation: none !important; }
         }
-        
-        /* Native transition styling for command palette dialog top-layer */
-        dialog#command-palette {
-            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+
+        /* ── Cursor glow trail ── */
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: radial-gradient(circle, color-mix(in srgb, var(--primary) 55%, transparent) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.15s ease, height 0.15s ease, opacity 0.3s ease;
             opacity: 0;
-            transform: scale(0.9) translateY(-20px);
+            mix-blend-mode: screen;
+        }
+        body:hover #cursor-glow { opacity: 1; }
+
+        /* ── 3D card tilt on hover ── */
+        .bento-card {
+            transform-style: preserve-3d;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            will-change: transform;
+        }
+        .bento-card:hover {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+        }
+
+        /* ── Native transition styling for command palette dialog top-layer ── */
+        dialog#command-palette {
+            transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+            opacity: 0;
+            transform: scale(0.88) translateY(-24px);
         }
         dialog#command-palette[open] {
             opacity: 1;
@@ -609,17 +643,18 @@
         @starting-style {
             dialog#command-palette[open] {
                 opacity: 0;
-                transform: scale(0.9) translateY(-20px);
+                transform: scale(0.88) translateY(-24px);
             }
         }
         dialog#command-palette::backdrop {
             background: rgba(0, 0, 0, 0);
             backdrop-filter: blur(0px);
-            transition: background 0.3s ease, backdrop-filter 0.3s ease, display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+            transition: background 0.35s ease, backdrop-filter 0.35s ease,
+                        display 0.3s allow-discrete, overlay 0.3s allow-discrete;
         }
         dialog#command-palette[open]::backdrop {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px) saturate(1.4);
         }
         @starting-style {
             dialog#command-palette[open]::backdrop {
@@ -649,6 +684,9 @@
 </head>
 
 <body class="antialiased" style="position:relative;">
+
+    <!-- Cursor glow trail element -->
+    <div id="cursor-glow"></div>
 
     <!-- Interactive Space-Time Fabric Canvas Backdrop -->
     <canvas id="backdrop-canvas"
@@ -1550,8 +1588,8 @@
                 }
                 var saved = localStorage.getItem('theme');
                 applyTheme(saved !== 'light');
-                // Theme toggle logic (with modern same-document View Transitions)
-                btn.addEventListener('click', function () {
+                // Theme toggle logic — dramatic circular clip-path wipe from button position
+                btn.addEventListener('click', function (e) {
                     var d = !document.documentElement.classList.contains('dark');
                     var executeThemeToggle = function () {
                         localStorage.setItem('theme', d ? 'dark' : 'light');
@@ -1562,6 +1600,12 @@
                     if (!document.startViewTransition) {
                         executeThemeToggle();
                     } else {
+                        // Pin the wipe origin to the toggle button's center
+                        var rect = btn.getBoundingClientRect();
+                        var x = ((rect.left + rect.right) / 2 / window.innerWidth * 100).toFixed(2) + '%';
+                        var y = ((rect.top + rect.bottom) / 2 / window.innerHeight * 100).toFixed(2) + '%';
+                        document.documentElement.style.setProperty('--vt-x', x);
+                        document.documentElement.style.setProperty('--vt-y', y);
                         document.startViewTransition(executeThemeToggle);
                     }
                 });
@@ -1594,8 +1638,11 @@
                     try {
                         var audio = document.getElementById('waterfall-audio');
                         if (audio) {
-                            audio.volume = 0.08; // Low audible pleasant volume
-                            audio.play();
+                            audio.volume = 0.12; // Calm ambient wash
+                            var playPromise = audio.play();
+                            if (playPromise) {
+                                playPromise.catch(function () {}); // suppress autoplay policy errors silently
+                            }
                         }
                     } catch (e) {}
                 }
@@ -1603,8 +1650,9 @@
                 function stopWaterfall() {
                     try {
                         var audio = document.getElementById('waterfall-audio');
-                        if (audio) {
+                        if (audio && !audio.paused) {
                             audio.pause();
+                            audio.currentTime = 0;
                         }
                     } catch (e) {}
                 }
@@ -1612,13 +1660,11 @@
                 if (localStorage.getItem('sound') === 'enabled') {
                     soundEnabled = true;
                     soundIcon.innerText = 'volume_up';
-                    // Auto-start ambient waterfall on user click anywhere on the page
-                    window.addEventListener('click', function startOnGesture() {
-                        if (soundEnabled) {
-                            startWaterfall();
-                        }
-                        window.removeEventListener('click', startOnGesture);
-                    }, { once: true });
+                    // Start waterfall on first user interaction (browser autoplay policy)
+                    document.addEventListener('pointerdown', function _wfStart() {
+                        startWaterfall();
+                        document.removeEventListener('pointerdown', _wfStart);
+                    }, { once: true, passive: true });
                 }
 
                 soundToggle.addEventListener('click', function () {
@@ -1626,9 +1672,8 @@
                     localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
                     soundIcon.innerText = soundEnabled ? 'volume_up' : 'volume_off';
                     if (soundEnabled) {
-                        playClickSound(600, 'triangle', 0.12);
-                        // Delayed start to let the toggle click finish
-                        setTimeout(startWaterfall, 150);
+                        setTimeout(startWaterfall, 80);
+                        setTimeout(function() { playClickSound(660, 'triangle', 0.12, 0.06); }, 100);
                     } else {
                         stopWaterfall();
                         playMuteSound();
@@ -1647,36 +1692,39 @@
                     return audioCtx;
                 }
 
-                function playClickSound(freq, type, duration) {
+                // playClickSound(freq, waveType, duration, volume)
+                // volume is optional, defaults to 0.055 for clarity on any speaker
+                function playClickSound(freq, type, duration, vol) {
                     if (!soundEnabled) return;
                     try {
                         var ctx = getAudioContext();
                         var now = ctx.currentTime;
-                        
+                        var peakGain = (vol !== undefined) ? vol : 0.055;
+
                         var osc1 = ctx.createOscillator();
                         var osc2 = ctx.createOscillator();
                         var gainNode = ctx.createGain();
                         var filter = ctx.createBiquadFilter();
-                        
+
                         osc1.type = type || 'sine';
                         osc1.frequency.setValueAtTime(freq || 800, now);
-                        
-                        // Add perfect-fifth overtone for a pleasant organic chime
+
+                        // Perfect-fifth overtone for rich organic chime
                         osc2.type = 'sine';
                         osc2.frequency.setValueAtTime((freq || 800) * 1.5, now);
-                        
+
                         filter.type = 'lowpass';
-                        filter.frequency.setValueAtTime(1100, now);
-                        filter.frequency.exponentialRampToValueAtTime(260, now + duration);
-                        
-                        gainNode.gain.setValueAtTime(0.015, now);
+                        filter.frequency.setValueAtTime(1400, now);
+                        filter.frequency.exponentialRampToValueAtTime(300, now + duration);
+
+                        gainNode.gain.setValueAtTime(peakGain, now);
                         gainNode.gain.exponentialRampToValueAtTime(0.00001, now + duration);
-                        
+
                         osc1.connect(gainNode);
                         osc2.connect(gainNode);
                         gainNode.connect(filter);
                         filter.connect(ctx.destination);
-                        
+
                         osc1.start(now);
                         osc2.start(now);
                         osc1.stop(now + duration);
@@ -2010,8 +2058,8 @@
                                         link.style.fontWeight = '500';
                                     }
                                 });
-                                // Play tactile section scroll chime (low frequency click)
-                                playClickSound(300, 'triangle', 0.08);
+                                // Play tactile section scroll chime — audible triangle click
+                                playClickSound(320, 'triangle', 0.12, 0.065);
                             }
                         }
                     });
@@ -2044,6 +2092,30 @@
                         }
                     }, 4200);
                 }
+
+                // ── Cursor glow trail ──
+                var glowEl = document.getElementById('cursor-glow');
+                if (glowEl) {
+                    document.addEventListener('mousemove', function (e) {
+                        glowEl.style.left = e.clientX + 'px';
+                        glowEl.style.top  = e.clientY + 'px';
+                    }, { passive: true });
+                }
+
+                // ── 3D card tilt on pointer move ──
+                document.querySelectorAll('.bento-card').forEach(function (card) {
+                    card.addEventListener('pointermove', function (e) {
+                        var r = card.getBoundingClientRect();
+                        var cx = r.left + r.width / 2;
+                        var cy = r.top + r.height / 2;
+                        var dx = (e.clientX - cx) / (r.width / 2);
+                        var dy = (e.clientY - cy) / (r.height / 2);
+                        card.style.transform = 'perspective(700px) rotateY(' + (dx * 5) + 'deg) rotateX(' + (-dy * 5) + 'deg) translateZ(6px)';
+                    }, { passive: true });
+                    card.addEventListener('pointerleave', function () {
+                        card.style.transform = '';
+                    });
+                });
 
                 // ── Interactive Space-Time Curve Mesh Backdrop canvas ──
                 var canvas = document.getElementById('backdrop-canvas');
