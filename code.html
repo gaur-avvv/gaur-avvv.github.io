@@ -928,8 +928,10 @@
                     <span id="sound-icon" class="material-symbols-outlined"
                         style="font-size:14px;color:var(--primary);display:block">volume_off</span>
                 </button>
-                <div class="visitor-badge" style="padding:0;background:transparent;border:none;backdrop-filter:none;">
-                    <img src="https://komarev.com/ghpvc/?username=gaur-avvv&style=plastic&color=blueviolet" alt="Profile Views" style="height:20px;display:block;">
+                <div class="visitor-badge">
+                    <span class="material-symbols-outlined"
+                        style="font-size:14px;color:var(--secondary)">visibility</span>
+                    <span id="view-count" style="color:var(--secondary)">Loading...</span>
                 </div>
                 <button id="theme-toggle-btn" aria-label="Toggle Theme"
                     style="padding:6px;border-radius:9999px;border:1px solid var(--outline);background:color-mix(in srgb,var(--surface) 70%,transparent);cursor:pointer">
@@ -2790,6 +2792,52 @@
                         onBannerScroll();
                     }
                 }
+
+                // ── Live Visitor Views Counter via CounterAPI ──
+                async function updateViews() {
+                    const namespace = "gaur-avvv-portfolio";
+                    const key = "homepage";
+                    const storageKey = `visited_${namespace}_${key}`;
+
+                    // 1. Check if user already visited in this browser session/local storage
+                    const hasVisited = localStorage.getItem(storageKey);
+                    
+                    // Filter out Localhost & local file systems from incrementing counter
+                    const isLocal = location.hostname === "localhost" || 
+                                    location.hostname === "127.0.0.1" || 
+                                    location.protocol === "file:";
+
+                    try {
+                        let url;
+                        if (!hasVisited && !isLocal) {
+                            // First time visitor on live website: Increment counter
+                            url = `https://api.counterapi.dev/v1/${namespace}/${key}/up`;
+                            localStorage.setItem(storageKey, "true");
+                        } else {
+                            // Returning visitor or local testing: Just fetch current count
+                            url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+                        }
+
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        
+                        var viewCountSpan = document.getElementById('view-count');
+                        if (viewCountSpan && data && data.count != null) {
+                            viewCountSpan.innerText = Number(data.count).toLocaleString();
+                        } else if (viewCountSpan) {
+                            viewCountSpan.innerText = "Unavailable";
+                        }
+                    } catch (error) {
+                        console.error("Failed to update view count:", error);
+                        var viewCountSpan = document.getElementById('view-count');
+                        if (viewCountSpan) {
+                            viewCountSpan.innerText = "Unavailable";
+                        }
+                    }
+                }
+                
+                // Run counter update when DOM loads
+                window.addEventListener('DOMContentLoaded', updateViews);
 
             })();
     </script>
