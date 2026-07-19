@@ -581,6 +581,53 @@
             clip-path: circle(70px at var(--x) var(--y));
         }
 
+
+        /* Smooth View Transition during theme switches */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation-duration: 0.4s;
+            animation-timing-function: ease-in-out;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            ::view-transition-group(*),
+            ::view-transition-old(*),
+            ::view-transition-new(*) {
+                animation: none !important;
+            }
+        }
+        
+        /* Native transition styling for command palette dialog top-layer */
+        dialog#command-palette {
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+            opacity: 0;
+            transform: scale(0.9) translateY(-20px);
+        }
+        dialog#command-palette[open] {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        @starting-style {
+            dialog#command-palette[open] {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+        }
+        dialog#command-palette::backdrop {
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(0px);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease, display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+        }
+        dialog#command-palette[open]::backdrop {
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+        }
+        @starting-style {
+            dialog#command-palette[open]::backdrop {
+                background: rgba(0, 0, 0, 0);
+                backdrop-filter: blur(0px);
+            }
+        }
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&amp;family=Encode+Sans:wdth,wght@125,100..900&amp;family=Italiana&amp;family=Space+Grotesk:wght@300..700&amp;family=Syne:wght@400..800&amp;family=Yeseva+One&amp;display=swap" rel="stylesheet">
 
@@ -606,6 +653,9 @@
     <!-- Interactive Space-Time Fabric Canvas Backdrop -->
     <canvas id="backdrop-canvas"
         style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;"></canvas>
+
+    <!-- Background Ambient MP3 (Birds & Waterfall) -->
+    <audio id="waterfall-audio" src="rmultimediaeu-birds-and-waterfall-250309.mp3" loop></audio>
 
     <!-- Scroll progress indicator -->
     <div id="scroll-progress"
@@ -1500,11 +1550,20 @@
                 }
                 var saved = localStorage.getItem('theme');
                 applyTheme(saved !== 'light');
+                // Theme toggle logic (with modern same-document View Transitions)
                 btn.addEventListener('click', function () {
                     var d = !document.documentElement.classList.contains('dark');
-                    localStorage.setItem('theme', d ? 'dark' : 'light');
-                    applyTheme(d);
-                    playClickSound(900, 'sine', 0.08);
+                    var executeThemeToggle = function () {
+                        localStorage.setItem('theme', d ? 'dark' : 'light');
+                        applyTheme(d);
+                        playClickSound(900, 'sine', 0.08);
+                    };
+
+                    if (!document.startViewTransition) {
+                        executeThemeToggle();
+                    } else {
+                        document.startViewTransition(executeThemeToggle);
+                    }
                 });
 
                 // ── Real Visitor Counter via CountAPI ──
@@ -1530,48 +1589,24 @@
                 var soundToggle = document.getElementById('sound-toggle-btn');
                 var soundIcon = document.getElementById('sound-icon');
 
-                var waterfallNode = null;
-
                 function startWaterfall() {
                     if (!soundEnabled) return;
                     try {
-                        var ctx = getAudioContext();
-                        if (waterfallNode) return; // already running
-                        
-                        var bufferSize = ctx.sampleRate * 4; // 4 seconds loop
-                        var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-                        var data = buffer.getChannelData(0);
-                        for (var i = 0; i < bufferSize; i++) {
-                            data[i] = Math.random() * 2 - 1;
+                        var audio = document.getElementById('waterfall-audio');
+                        if (audio) {
+                            audio.volume = 0.08; // Low audible pleasant volume
+                            audio.play();
                         }
-                        
-                        var source = ctx.createBufferSource();
-                        source.buffer = buffer;
-                        source.loop = true;
-                        
-                        var filter = ctx.createBiquadFilter();
-                        filter.type = 'lowpass';
-                        filter.frequency.setValueAtTime(360, ctx.currentTime); // Soothing deep waterfall rumble
-                        
-                        var gain = ctx.createGain();
-                        gain.gain.setValueAtTime(0.022, ctx.currentTime); // Soft audible ambient waterfall wash
-                        
-                        source.connect(filter);
-                        filter.connect(gain);
-                        gain.connect(ctx.destination);
-                        
-                        source.start(0);
-                        waterfallNode = source;
                     } catch (e) {}
                 }
 
                 function stopWaterfall() {
-                    if (waterfallNode) {
-                        try {
-                            waterfallNode.stop();
-                        } catch (e) {}
-                        waterfallNode = null;
-                    }
+                    try {
+                        var audio = document.getElementById('waterfall-audio');
+                        if (audio) {
+                            audio.pause();
+                        }
+                    } catch (e) {}
                 }
 
                 if (localStorage.getItem('sound') === 'enabled') {
