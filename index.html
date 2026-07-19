@@ -715,9 +715,9 @@
         ═══════════════════════════════════════════════════ */
         .banner-parallax-wrapper {
             overflow: clip;
-            height: 250px;
-            border-bottom: 1px solid var(--outline);
-            margin-top: -65px;
+            height: 190px;
+            border-radius: 1rem;
+            border: 1px solid var(--outline);
             margin-bottom: 28px;
             position: relative;
             view-timeline: --banner-vt;
@@ -740,11 +740,11 @@
 
             @keyframes banner-parallax {
                 from {
-                    transform: translateY(-18%);
+                    transform: translateY(-5%);
                 }
 
                 to {
-                    transform: translateY(12%);
+                    transform: translateY(-25%);
                 }
             }
         }
@@ -935,13 +935,13 @@
         </div>
     </header>
 
-    <!-- BANNER (Parallax) -->
-    <div class="banner-parallax-wrapper">
-        <img alt="Pixel-art waterfall landscape" class="banner-parallax-img"
-            src="banner.gif">
-    </div>
-
     <main style="max-width:860px;margin:0 auto;padding:28px 20px">
+
+        <!-- BANNER (Parallax) -->
+        <div class="banner-parallax-wrapper">
+            <img alt="Pixel-art waterfall landscape" class="banner-parallax-img"
+                src="banner.gif">
+        </div>
 
         <!-- PROFILE -->
         <section class="flex flex-col md:flex-row items-start" style="gap:28px;margin-bottom:28px">
