@@ -928,9 +928,9 @@
                     <span id="sound-icon" class="material-symbols-outlined"
                         style="font-size:14px;color:var(--primary);display:block">volume_off</span>
                 </button>
-                <div class="visitor-badge" style="padding:0;background:transparent;border:none;backdrop-filter:none;">
-                    <img src="https://komarev.com/ghpvc/?username=gaur-avvv" alt="Profile Views"
-                        style="height:20px;display:block;">
+                <div class="visitor-badge">
+                    <span class="material-symbols-outlined" style="font-size:14px;color:var(--secondary)">visibility</span>
+                    <span id="view-count" style="color:var(--secondary)">···</span>
                 </div>
                 <button id="theme-toggle-btn" aria-label="Toggle Theme"
                     style="padding:6px;border-radius:9999px;border:1px solid var(--outline);background:color-mix(in srgb,var(--surface) 70%,transparent);cursor:pointer">
@@ -2819,44 +2819,56 @@
                 }
 
 
-                // ── Live Visitor Counter via CounterAPI ──
-                async function updateViews() {
+                // ── Live Visitor Counter (multi-fallback) ──
+                (function () {
                     var viewEl = document.getElementById('view-count');
                     if (!viewEl) return;
 
-                    var namespace = 'gaur-avvv-portfolio';
-                    var key = 'homepage';
-                    var storageKey = 'visited_' + namespace + '_' + key;
+                    var NS  = 'gaur-avvv-portfolio';
+                    var KEY = 'homepage';
+                    var SK  = 'visited_' + NS + '_' + KEY;
 
-                    // Don't count localhost / file:// visits
                     var isLocal = location.hostname === 'localhost' ||
                                   location.hostname === '127.0.0.1' ||
                                   location.protocol === 'file:';
 
-                    var hasVisited = localStorage.getItem(storageKey);
+                    var seen = localStorage.getItem(SK);
 
-                    var url;
-                    if (!hasVisited && !isLocal) {
-                        url = 'https://api.counterapi.dev/v1/' + namespace + '/' + key + '/up';
-                        localStorage.setItem(storageKey, '1');
-                    } else {
-                        url = 'https://api.counterapi.dev/v1/' + namespace + '/' + key;
+                    // ── Primary: CounterAPI ──
+                    var primaryURL = seen || isLocal
+                        ? 'https://api.counterapi.dev/v1/' + NS + '/' + KEY
+                        : 'https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up';
+
+                    if (!seen && !isLocal) localStorage.setItem(SK, '1');
+
+                    function display(n) {
+                        viewEl.innerText = Number(n).toLocaleString();
                     }
 
-                    try {
-                        var r = await fetch(url);
-                        var d = await r.json();
-                        if (d && d.count != null) {
-                            viewEl.innerText = Number(d.count).toLocaleString();
-                        } else {
-                            viewEl.innerText = '—';
-                        }
-                    } catch (e) {
+                    // ── Fallback 1: hits.seeyoufarm ──
+                    function fallback1() {
+                        fetch('https://hits.seeyoufarm.com/api/count/keep/badge/gaur-avvv-portfolio/count.json')
+                            .then(function (r) { return r.json(); })
+                            .then(function (d) {
+                                if (d && d.total_counts != null) { display(d.total_counts); }
+                                else { fallback2(); }
+                            })
+                            .catch(fallback2);
+                    }
+
+                    // ── Fallback 2: show friendly dash ──
+                    function fallback2() {
                         viewEl.innerText = '—';
                     }
-                }
 
-                updateViews();
+                    fetch(primaryURL)
+                        .then(function (r) { return r.json(); })
+                        .then(function (d) {
+                            if (d && d.count != null) { display(d.count); }
+                            else { fallback1(); }
+                        })
+                        .catch(fallback1);
+                })();
 
             })();
     </script>
