@@ -603,21 +603,6 @@
             ::view-transition-new(*) { animation: none !important; }
         }
 
-        /* ── Cursor glow trail ── */
-        #cursor-glow {
-            pointer-events: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 28px; height: 28px;
-            border-radius: 50%;
-            background: radial-gradient(circle, color-mix(in srgb, var(--primary) 55%, transparent) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: width 0.15s ease, height 0.15s ease, opacity 0.3s ease;
-            opacity: 0;
-            mix-blend-mode: screen;
-        }
-        body:hover #cursor-glow { opacity: 1; }
 
         /* ── 3D card tilt on hover ── */
         .bento-card {
@@ -685,15 +670,9 @@
 
 <body class="antialiased" style="position:relative;">
 
-    <!-- Cursor glow trail element -->
-    <div id="cursor-glow"></div>
-
     <!-- Interactive Space-Time Fabric Canvas Backdrop -->
     <canvas id="backdrop-canvas"
         style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;pointer-events:none;"></canvas>
-
-    <!-- Background Ambient MP3 (Birds & Waterfall) -->
-    <audio id="waterfall-audio" src="rmultimediaeu-birds-and-waterfall-250309.mp3" loop></audio>
 
     <!-- Scroll progress indicator -->
     <div id="scroll-progress"
@@ -1633,38 +1612,12 @@
                 var soundToggle = document.getElementById('sound-toggle-btn');
                 var soundIcon = document.getElementById('sound-icon');
 
-                function startWaterfall() {
-                    if (!soundEnabled) return;
-                    try {
-                        var audio = document.getElementById('waterfall-audio');
-                        if (audio) {
-                            audio.volume = 0.12; // Calm ambient wash
-                            var playPromise = audio.play();
-                            if (playPromise) {
-                                playPromise.catch(function () {}); // suppress autoplay policy errors silently
-                            }
-                        }
-                    } catch (e) {}
-                }
-
-                function stopWaterfall() {
-                    try {
-                        var audio = document.getElementById('waterfall-audio');
-                        if (audio && !audio.paused) {
-                            audio.pause();
-                            audio.currentTime = 0;
-                        }
-                    } catch (e) {}
-                }
+                function startWaterfall() { /* waterfall removed */ }
+                function stopWaterfall() { /* waterfall removed */ }
 
                 if (localStorage.getItem('sound') === 'enabled') {
                     soundEnabled = true;
                     soundIcon.innerText = 'volume_up';
-                    // Start waterfall on first user interaction (browser autoplay policy)
-                    document.addEventListener('pointerdown', function _wfStart() {
-                        startWaterfall();
-                        document.removeEventListener('pointerdown', _wfStart);
-                    }, { once: true, passive: true });
                 }
 
                 soundToggle.addEventListener('click', function () {
@@ -1672,10 +1625,8 @@
                     localStorage.setItem('sound', soundEnabled ? 'enabled' : 'disabled');
                     soundIcon.innerText = soundEnabled ? 'volume_up' : 'volume_off';
                     if (soundEnabled) {
-                        setTimeout(startWaterfall, 80);
-                        setTimeout(function() { playClickSound(660, 'triangle', 0.12, 0.06); }, 100);
+                        setTimeout(function() { playClickSound(660, 'triangle', 0.12, 0.06); }, 80);
                     } else {
-                        stopWaterfall();
                         playMuteSound();
                     }
                 });
@@ -2091,15 +2042,6 @@
                             liveView.textContent = count.toLocaleString();
                         }
                     }, 4200);
-                }
-
-                // ── Cursor glow trail ──
-                var glowEl = document.getElementById('cursor-glow');
-                if (glowEl) {
-                    document.addEventListener('mousemove', function (e) {
-                        glowEl.style.left = e.clientX + 'px';
-                        glowEl.style.top  = e.clientY + 'px';
-                    }, { passive: true });
                 }
 
                 // ── 3D card tilt on pointer move ──
