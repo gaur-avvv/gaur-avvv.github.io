@@ -715,9 +715,9 @@
         ═══════════════════════════════════════════════════ */
         .banner-parallax-wrapper {
             overflow: clip;
-            height: 190px;
-            border-radius: 1rem;
-            border: 1px solid var(--outline);
+            height: 250px;
+            border-bottom: 1px solid var(--outline);
+            margin-top: -65px;
             margin-bottom: 28px;
             position: relative;
             view-timeline: --banner-vt;
@@ -915,13 +915,7 @@
                     href="#contact">Contact</a>
             </nav>
             <div style="display:flex;align-items:center;gap:10px">
-                <!-- Command Palette Info Indicator -->
-                <button onclick="window.toggleCmdPalette()" title="Search / Commands (Ctrl+K)"
-                    class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[10px] opacity-70 hover:opacity-100 transition-opacity"
-                    style="border-color:var(--outline);background:color-mix(in srgb,var(--surface) 60%,transparent);color:var(--secondary);cursor:pointer;">
-                    <span>Search</span><kbd
-                        style="border:1px solid var(--outline);padding:1px 3px;border-radius:3px;font-size:8px;">⌘K</kbd>
-                </button>
+
                 <!-- Sound toggle (reduced icon size and padding) -->
                 <button id="sound-toggle-btn" aria-label="Toggle Sound"
                     style="padding:4px;border-radius:9999px;border:1px solid var(--outline);background:color-mix(in srgb,var(--surface) 70%,transparent);cursor:pointer;line-height:0">
@@ -941,13 +935,13 @@
         </div>
     </header>
 
-    <main style="max-width:860px;margin:0 auto;padding:28px 20px">
+    <!-- BANNER (Parallax) -->
+    <div class="banner-parallax-wrapper">
+        <img alt="Pixel-art waterfall landscape" class="banner-parallax-img"
+            src="banner.gif">
+    </div>
 
-        <!-- BANNER (Parallax) -->
-        <div class="banner-parallax-wrapper">
-            <img alt="Pixel-art waterfall landscape" class="banner-parallax-img"
-                src="banner.gif">
-        </div>
+    <main style="max-width:860px;margin:0 auto;padding:28px 20px">
 
         <!-- PROFILE -->
         <section class="flex flex-col md:flex-row items-start" style="gap:28px;margin-bottom:28px">
