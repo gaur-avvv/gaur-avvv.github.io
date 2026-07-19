@@ -486,8 +486,172 @@
             }
         }
 
+
+        /* Shrinking Header scroll-driven animation */
+        @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+            @keyframes shrink-header {
+                to {
+                    background: rgba(10, 10, 10, 0.88);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-bottom-color: var(--outline);
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+                }
+            }
+            #main-header {
+                animation: shrink-header auto linear both;
+                animation-timeline: scroll(root);
+                animation-range: 0px 80px;
+            }
+        }
+        
+        /* Scrollability Affordance Hints inside search palette results */
+        #cmd-results-wrapper {
+            position: relative;
+        }
+        .indicator-top, .indicator-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 14px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .indicator-top {
+            top: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
+        }
+        .indicator-bottom {
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+        }
+        
+        @supports (container-type: scroll-state) {
+            #cmd-results {
+                container-type: scroll-state;
+            }
+            @container scroll-state(scrollable: top) {
+                .indicator-top {
+                    opacity: 1 !important;
+                }
+            }
+            @container scroll-state(scrollable: bottom) {
+                .indicator-bottom {
+                    opacity: 1 !important;
+                }
+            }
+        }
+        
+        /* Fallback classes toggled by IntersectionObserver */
+        .scrolled-down .indicator-top {
+            opacity: 1 !important;
+        }
+        .can-scroll-down .indicator-bottom {
+            opacity: 1 !important;
+        }
+
+
+        /* Shrinking Header scroll-driven animation */
+        @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+            @keyframes shrink-header {
+                to {
+                    background: rgba(10, 10, 10, 0.88);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-bottom-color: var(--outline);
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+                }
+            }
+            #main-header {
+                animation: shrink-header auto linear both;
+                animation-timeline: scroll(root);
+                animation-range: 0px 80px;
+            }
+        }
+        
+        /* Scrollability Affordance Hints inside search palette results */
+        #cmd-results-wrapper {
+            position: relative;
+        }
+        .indicator-top, .indicator-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 14px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .indicator-top {
+            top: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
+        }
+        .indicator-bottom {
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+        }
+        
+        @supports (container-type: scroll-state) {
+            #cmd-results {
+                container-type: scroll-state;
+            }
+            @container scroll-state(scrollable: top) {
+                .indicator-top {
+                    opacity: 1 !important;
+                }
+            }
+            @container scroll-state(scrollable: bottom) {
+                .indicator-bottom {
+                    opacity: 1 !important;
+                }
+            }
+        }
+        
+        /* Fallback classes toggled by IntersectionObserver */
+        .scrolled-down .indicator-top {
+            opacity: 1 !important;
+        }
+        .can-scroll-down .indicator-bottom {
+            opacity: 1 !important;
+        }
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&amp;family=Encode+Sans:wdth,wght@125,100..900&amp;family=Italiana&amp;family=Space+Grotesk:wght@300..700&amp;family=Syne:wght@400..800&amp;family=Yeseva+One&amp;display=swap" rel="stylesheet">
+
+    <!-- Speculation Rules API for zero-latency preloading on hover -->
+    <script type="speculationrules">
+    {
+      "prefetch": [{
+        "tag": "prefetch-portfolio",
+        "where": { "href_matches": "/*" },
+        "eagerness": "eager"
+      }],
+      "prerender": [{
+        "tag": "prerender-portfolio",
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }]
+    }
+    </script>
+
+    <!-- Speculation Rules API for zero-latency preloading on hover -->
+    <script type="speculationrules">
+    {
+      "prefetch": [{
+        "tag": "prefetch-portfolio",
+        "where": { "href_matches": "/*" },
+        "eagerness": "eager"
+      }],
+      "prerender": [{
+        "tag": "prerender-portfolio",
+        "where": { "href_matches": "/*" },
+        "eagerness": "moderate"
+      }]
+    }
+    </script>
 </head>
 
 <body class="antialiased" style="position:relative;">
@@ -502,8 +666,8 @@
     </div>
 
     <!-- NAV -->
-    <header class="w-full top-0 sticky backdrop-blur-md border-b z-50"
-        style="background:rgba(10,10,10,.85);border-color:var(--outline)">
+    <header id="main-header" class="w-full top-0 sticky z-50 transition-all duration-300"
+        style="background:transparent;border-bottom:1px solid transparent;backdrop-filter:none;-webkit-backdrop-filter:none;">
         <div
             style="max-width:860px;margin:0 auto;padding:12px 20px;display:flex;justify-content:space-between;align-items:center">
             <div style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--primary)">
@@ -606,6 +770,40 @@
                         style="padding:9px 18px;font-size:.78rem;font-weight:500;display:flex;align-items:center;gap:8px;text-decoration:none"
                         href="https://leetcode.com/u/gaur-avvv" target="_blank" rel="noopener noreferrer"><span
                             class="material-symbols-outlined" style="font-size:15px">terminal</span>LeetCode</a>
+                    <button id="ai-summarize-btn" class="pill-tag nav-sound-link"
+                        style="padding:9px 18px;font-size:.78rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--primary);cursor:pointer;border:1px solid var(--outline);border-radius:9999px;">
+                        <span class="material-symbols-outlined" style="font-size:15px;color:var(--brand);">smart_toy</span>
+                        <span id="ai-btn-text">AI Summarize</span>
+                    </button>
+                    <button id="ai-summarize-btn" class="pill-tag nav-sound-link"
+                        style="padding:9px 18px;font-size:.78rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--primary);cursor:pointer;border:1px solid var(--outline);border-radius:9999px;">
+                        <span class="material-symbols-outlined" style="font-size:15px;color:var(--brand);">smart_toy</span>
+                        <span id="ai-btn-text">AI Summarize</span>
+                    </button>
+                </div>
+                
+                <!-- Collapsible AI Summary Panel -->
+                <div id="ai-summary-card" class="bento-card reveal-on-scroll" style="display:none;margin-top:14px;padding:16px;font-size:0.8rem;line-height:1.6;border-color:var(--brand);background:color-mix(in srgb,var(--surface) 90%,transparent);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid var(--outline);padding-bottom:6px;">
+                        <span style="font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px;">
+                            <span class="material-symbols-outlined" style="font-size:16px;color:var(--brand);">smart_toy</span>
+                            Local Gemini Nano Summary
+                        </span>
+                        <button onclick="document.getElementById('ai-summary-card').style.display='none'" style="background:transparent;border:none;color:var(--secondary);cursor:pointer;font-size:0.8rem;">[Close]</button>
+                    </div>
+                    <div id="ai-summary-text" style="color:var(--on-surface);">Initializing model...</div>
+                </div>
+                
+                <!-- Collapsible AI Summary Panel -->
+                <div id="ai-summary-card" class="bento-card reveal-on-scroll" style="display:none;margin-top:14px;padding:16px;font-size:0.8rem;line-height:1.6;border-color:var(--brand);background:color-mix(in srgb,var(--surface) 90%,transparent);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid var(--outline);padding-bottom:6px;">
+                        <span style="font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px;">
+                            <span class="material-symbols-outlined" style="font-size:16px;color:var(--brand);">smart_toy</span>
+                            Local Gemini Nano Summary
+                        </span>
+                        <button onclick="document.getElementById('ai-summary-card').style.display='none'" style="background:transparent;border:none;color:var(--secondary);cursor:pointer;font-size:0.8rem;">[Close]</button>
+                    </div>
+                    <div id="ai-summary-text" style="color:var(--on-surface);">Initializing model...</div>
                 </div>
             </div>
         </section>
@@ -1339,9 +1537,12 @@
                             style="font-size:16px">volume_up</span> Toggle Sounds</span>
                     <span style="color:var(--secondary);font-size:0.7rem;font-family:monospace">ON/OFF</span>
                 </div>
+                    <div class="sentinel-bottom" style="height:0;width:0;visibility:hidden;"></div>
+                </div>
+                <div class="indicator-bottom"></div>
             </div>
         </div>
-    </div>
+    </dialog>
 
     <script>
             (function () {
@@ -1465,15 +1666,16 @@
 
 
 
-                // ── Command Palette (Spotlight Search) ──
+                // ── Command Palette (Spotlight Search via Native Dialog) ──
                 var cmdPalette = document.getElementById('command-palette');
                 var cmdInput = document.getElementById('cmd-input');
 
                 window.toggleCmdPalette = function () {
-                    var open = cmdPalette.style.display === 'flex';
-                    cmdPalette.style.display = open ? 'none' : 'flex';
-                    if (!open) {
+                    if (cmdPalette.open) {
+                        cmdPalette.close();
+                    } else {
                         cmdInput.value = '';
+                        cmdPalette.showModal();
                         setTimeout(function () { cmdInput.focus(); }, 50);
                         // Ascending double-tone arpeggio
                         playClickSound(500, 'sine', 0.04);
@@ -1483,11 +1685,11 @@
                 };
 
                 window.closeCmdPalette = function (e) {
-                    cmdPalette.style.display = 'none';
+                    cmdPalette.close();
                 };
 
                 window.execPaletteCmd = function (action) {
-                    cmdPalette.style.display = 'none';
+                    cmdPalette.close();
                     if (action === 'toggle-theme') {
                         btn.click();
                     } else if (action === 'toggle-sound') {
@@ -1500,14 +1702,18 @@
                     }
                 };
 
-                // Keyboard shortcut Ctrl+K & ESC
+                // Close on backdrop click (Native Light Dismiss fallback check)
+                cmdPalette.addEventListener('click', function (e) {
+                    if (e.target === cmdPalette) {
+                        cmdPalette.close();
+                    }
+                });
+
+                // Keyboard shortcut Ctrl+K
                 window.addEventListener('keydown', function (e) {
                     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                         e.preventDefault();
                         window.toggleCmdPalette();
-                    }
-                    if (e.key === 'Escape') {
-                        window.closeCmdPalette();
                     }
                 });
 
@@ -1660,6 +1866,192 @@
                             return "Section " + input.sectionId + " not found in the portfolio page.";
                         },
                         annotations: { readOnlyHint: false }
+                    });
+                }
+
+                // ── Fallback for shrinking header in unsupported browsers ──
+                if (!CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)')) {
+                    var header = document.getElementById('main-header');
+                    if (header) {
+                        window.addEventListener('scroll', function () {
+                            if (window.scrollY > 20) {
+                                header.style.background = 'rgba(10, 10, 10, 0.88)';
+                                header.style.backdropFilter = 'blur(12px)';
+                                header.style.webkitBackdropFilter = 'blur(12px)';
+                                header.style.borderBottomColor = 'var(--outline)';
+                                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.45)';
+                            } else {
+                                header.style.background = 'transparent';
+                                header.style.backdropFilter = 'none';
+                                header.style.webkitBackdropFilter = 'none';
+                                header.style.borderBottomColor = 'transparent';
+                                header.style.boxShadow = 'none';
+                            }
+                        });
+                    }
+                }
+
+                // ── Fallback for container scroll-state queries (Firefox & Safari) ──
+                if (!CSS.supports('container-type', 'scroll-state')) {
+                    var scroller = document.getElementById('cmd-results');
+                    var wrapper = document.getElementById('cmd-results-wrapper');
+                    var topSentinel = document.querySelector('.sentinel-top');
+                    var bottomSentinel = document.querySelector('.sentinel-bottom');
+
+                    if (scroller && wrapper && topSentinel && bottomSentinel) {
+                        var observer = new IntersectionObserver(function (entries) {
+                            entries.forEach(function (entry) {
+                                if (entry.target === topSentinel) {
+                                    wrapper.classList.toggle('scrolled-down', !entry.isIntersecting);
+                                }
+                                if (entry.target === bottomSentinel) {
+                                    wrapper.classList.toggle('can-scroll-down', !entry.isIntersecting);
+                                }
+                            });
+                        }, { root: scroller });
+
+                        observer.observe(topSentinel);
+                        observer.observe(bottomSentinel);
+                    }
+                }
+
+                // ── On-Device LLM (Gemini Nano) Summarization logic ──
+                var aiBtn = document.getElementById('ai-summarize-btn');
+                var aiCard = document.getElementById('ai-summary-card');
+                var aiText = document.getElementById('ai-summary-text');
+
+                if (aiBtn && aiCard && aiText) {
+                    aiBtn.addEventListener('click', async function () {
+                        aiCard.style.display = 'block';
+                        aiText.textContent = "Analyzing portfolio metrics...";
+                        aiCard.scrollIntoView({ behavior: 'smooth' });
+
+                        var promptText = "You are Gaurav Singh's AI assistant. Summarize why Gaurav is a top candidate for ML/AI roles in 2-3 sentences. Write ONLY the pitch. Do not add any chatter.";
+                        
+                        if (typeof LanguageModel !== 'undefined') {
+                            try {
+                                var availability = await LanguageModel.availability();
+                                if (availability !== 'unavailable') {
+                                    aiText.textContent = "Downloading model weights...";
+                                    var session = await LanguageModel.create({
+                                        monitor(m) {
+                                            m.addEventListener('downloadprogress', function (e) {
+                                                var pct = Math.round((e.loaded / e.total) * 100);
+                                                aiText.textContent = "Loading local weights: " + pct + "%";
+                                            });
+                                        }
+                                    });
+                                    
+                                    aiText.textContent = "";
+                                    var stream = session.promptStreaming(promptText);
+                                    for await (var chunk of stream) {
+                                        aiText.textContent += chunk;
+                                    }
+                                    session.destroy();
+                                    return;
+                                }
+                            } catch (err) {
+                                console.warn("Local LanguageModel failed, running fallback.", err);
+                            }
+                        }
+
+                        // Local/static summary fallback
+                        setTimeout(function () {
+                            aiText.innerHTML = "Gaurav Singh is a highly skilled **Machine Learning Engineer & AI Researcher** specializing in computer vision pipelines and deep learning optimizations. He has built production-grade systems like **Bio-SentinelX** (93% accuracy ML classification), **Arogya AI** (multi-class radiological diagnostics), and **ShakeAlert** (sub-second seismic warning feeds). With expertise spanning PyTorch, Docker, MLOps, and cloud architectures (AWS/GCP), he is fully equipped to deploy robust, low-latency AI pipelines.";
+                        }, 600);
+                    });
+                }
+
+                // ── Fallback for shrinking header in unsupported browsers ──
+                if (!CSS.supports('(animation-timeline: scroll()) and (animation-range: 0% 100%)')) {
+                    var header = document.getElementById('main-header');
+                    if (header) {
+                        window.addEventListener('scroll', function () {
+                            if (window.scrollY > 20) {
+                                header.style.background = 'rgba(10, 10, 10, 0.88)';
+                                header.style.backdropFilter = 'blur(12px)';
+                                header.style.webkitBackdropFilter = 'blur(12px)';
+                                header.style.borderBottomColor = 'var(--outline)';
+                                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.45)';
+                            } else {
+                                header.style.background = 'transparent';
+                                header.style.backdropFilter = 'none';
+                                header.style.webkitBackdropFilter = 'none';
+                                header.style.borderBottomColor = 'transparent';
+                                header.style.boxShadow = 'none';
+                            }
+                        });
+                    }
+                }
+
+                // ── Fallback for container scroll-state queries (Firefox & Safari) ──
+                if (!CSS.supports('container-type', 'scroll-state')) {
+                    var scroller = document.getElementById('cmd-results');
+                    var wrapper = document.getElementById('cmd-results-wrapper');
+                    var topSentinel = document.querySelector('.sentinel-top');
+                    var bottomSentinel = document.querySelector('.sentinel-bottom');
+
+                    if (scroller && wrapper && topSentinel && bottomSentinel) {
+                        var observer = new IntersectionObserver(function (entries) {
+                            entries.forEach(function (entry) {
+                                if (entry.target === topSentinel) {
+                                    wrapper.classList.toggle('scrolled-down', !entry.isIntersecting);
+                                }
+                                if (entry.target === bottomSentinel) {
+                                    wrapper.classList.toggle('can-scroll-down', !entry.isIntersecting);
+                                }
+                            });
+                        }, { root: scroller });
+
+                        observer.observe(topSentinel);
+                        observer.observe(bottomSentinel);
+                    }
+                }
+
+                // ── On-Device LLM (Gemini Nano) Summarization logic ──
+                var aiBtn = document.getElementById('ai-summarize-btn');
+                var aiCard = document.getElementById('ai-summary-card');
+                var aiText = document.getElementById('ai-summary-text');
+
+                if (aiBtn && aiCard && aiText) {
+                    aiBtn.addEventListener('click', async function () {
+                        aiCard.style.display = 'block';
+                        aiText.textContent = "Analyzing portfolio metrics...";
+                        aiCard.scrollIntoView({ behavior: 'smooth' });
+
+                        var promptText = "You are Gaurav Singh's AI assistant. Summarize why Gaurav is a top candidate for ML/AI roles in 2-3 sentences. Write ONLY the pitch. Do not add any chatter.";
+                        
+                        if (typeof LanguageModel !== 'undefined') {
+                            try {
+                                var availability = await LanguageModel.availability();
+                                if (availability !== 'unavailable') {
+                                    aiText.textContent = "Downloading model weights...";
+                                    var session = await LanguageModel.create({
+                                        monitor(m) {
+                                            m.addEventListener('downloadprogress', function (e) {
+                                                var pct = Math.round((e.loaded / e.total) * 100);
+                                                aiText.textContent = "Loading local weights: " + pct + "%";
+                                            });
+                                        }
+                                    });
+                                    
+                                    aiText.textContent = "";
+                                    var stream = session.promptStreaming(promptText);
+                                    for await (var chunk of stream) {
+                                        aiText.textContent += chunk;
+                                    }
+                                    session.destroy();
+                                    return;
+                                }
+                            } catch (err) {
+                                console.warn("Local LanguageModel failed, running fallback.", err);
+                            }
+                        }
+
+                        // Local/static summary fallback
+                        setTimeout(function () {
+                            aiText.innerHTML = "Gaurav Singh is a highly skilled **Machine Learning Engineer & AI Researcher** specializing in computer vision pipelines and deep learning optimizations. He has built production-grade systems like **Bio-SentinelX** (93% accuracy ML classification), **Arogya AI** (multi-class radiological diagnostics), and **ShakeAlert** (sub-second seismic warning feeds). With expertise spanning PyTorch, Docker, MLOps, and cloud architectures (AWS/GCP), he is fully equipped to deploy robust, low-latency AI pipelines.";
+                        }, 600);
                     });
                 }
 
