@@ -1205,7 +1205,7 @@
                         </div>
                     </div>
                     <!-- Fully functional Web3Forms contact form handler -> delivers directly to email -->
-                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" toolname="send_contact_message" tooldescription="Sends a direct contact message to Gaurav Singh. Requires name, email, and message."
                         style="display:flex;flex-direction:column;gap:10px">
                         <!-- Web3Forms Access Key linked directly to user's email inbox -->
                         <input type="hidden" name="access_key" value="2825e609-64bc-4b67-b727-93f2b6b0076c">
@@ -1543,7 +1543,7 @@
                         var object = Object.fromEntries(formData);
                         var json = JSON.stringify(object);
 
-                        fetch('https://api.web3forms.com/submit', {
+                        var resultPromise = fetch('https://api.web3forms.com/submit', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -1558,23 +1558,56 @@
                                     formStatus.innerText = "Signal successfully registered! Thank you.";
                                     contactForm.reset();
                                     playClickSound(950, 'sine', 0.15);
+                                    return "Message successfully sent to Gaurav Singh.";
                                 } else {
                                     console.log(response);
                                     formStatus.style.color = '#ef4444';
                                     formStatus.innerText = "Error: " + res.message;
+                                    return "Error sending message: " + res.message;
                                 }
                             })
                             .catch(error => {
                                 console.log(error);
-                                // Fallback options: open direct email
                                 formStatus.style.color = '#ef4444';
                                 formStatus.innerHTML = 'Transmission failed. Click <a href="mailto:g.singh200293@gmail.com?subject=Contact%20Gaurav&body=Hi%20Gaurav..." style="text-decoration:underline;color:var(--primary);">here</a> to send direct email.';
+                                return "Network/API failure when sending message.";
                             })
-                            .then(() => {
+                            .then((result) => {
                                 submitBtn.disabled = false;
                                 submitBtn.innerText = "Transmit Signal";
                                 setTimeout(() => { formStatus.style.display = 'none'; }, 6000);
+                                return result;
                             });
+
+                        if (e.agentInvoked) {
+                            e.respondWith(resultPromise);
+                        }
+                    });
+                }
+
+                
+                // ── Programmatic WebMCP tool registration for AI agents ──
+                var modelContext = document.modelContext || navigator.modelContext;
+                if (modelContext && 'registerTool' in modelContext) {
+                    modelContext.registerTool({
+                        name: "navigate_portfolio_section",
+                        description: "Scrolls the portfolio smoothly to a chosen section selector (#about, #projects, #experience, #stacks, #awards, #contact).",
+                        inputSchema: {
+                            type: "object",
+                            properties: {
+                                sectionId: { type: "string", description: "The section identifier hash (including #)" }
+                            },
+                            required: ["sectionId"]
+                        },
+                        execute(input) {
+                            var target = document.querySelector(input.sectionId);
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                                return "Scrolled viewport successfully to " + input.sectionId;
+                            }
+                            return "Section " + input.sectionId + " not found in the portfolio page.";
+                        },
+                        annotations: { readOnlyHint: false }
                     });
                 }
 
