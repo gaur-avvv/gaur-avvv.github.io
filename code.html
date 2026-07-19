@@ -576,6 +576,9 @@
             --y: var(--mouse-y, 50%);
             clip-path: circle(0px at var(--x) var(--y));
             transition: clip-path 0.18s ease-out;
+            will-change: clip-path;
+            transform: translate3d(0,0,0);
+            backface-visibility: hidden;
         }
         .reveal-container:hover .reveal-layer {
             clip-path: circle(70px at var(--x) var(--y));
@@ -607,8 +610,10 @@
         /* ── 3D card tilt on hover ── */
         .bento-card {
             transform-style: preserve-3d;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            will-change: transform;
+            transition: transform 0.22s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.22s ease;
+            will-change: transform, box-shadow;
+            backface-visibility: hidden;
+            transform: translate3d(0,0,0);
         }
         .bento-card:hover {
             box-shadow: 0 20px 60px rgba(0,0,0,0.45);
@@ -681,74 +686,6 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .banner-parallax-img { animation: none; }
-        }
-
-        /* ═══════════════════════════════════════════════════
-           FEATURE 2 — Project Carousel (scroll-snap + scroll-driven slide effects)
-        ═══════════════════════════════════════════════════ */
-        .project-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-snap-stop: always;
-            gap: 20px;
-            padding-bottom: 0px;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
-        }
-        .project-carousel::-webkit-scrollbar {
-            display: none; /* Safari/Chrome */
-        }
-        .carousel-slide {
-            scroll-snap-align: center;
-            flex-shrink: 0;
-            width: min(100%, 820px);
-        }
-        @supports ((animation-timeline: view()) and (animation-range: entry)) {
-            @keyframes slide-in-out {
-                entry 0%  { opacity: 0; scale: 0.92; }
-                entry 20% { opacity: 1; scale: 1;    }
-                center    { opacity: 1; scale: 1;    }
-                exit 80%  { opacity: 1; scale: 1;    }
-                exit 100% { opacity: 0; scale: 0.92; }
-            }
-            .carousel-slide {
-                animation: slide-in-out linear both;
-                animation-timeline: view(inline);
-                animation-range: entry 0% exit 100%;
-            }
-        }
-        /* Fallback: IntersectionObserver toggled class */
-        .carousel-slide:not(.slide-visible) {
-            opacity: 0.45;
-            transform: scale(0.95);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        .carousel-slide.slide-visible {
-            opacity: 1;
-            transform: scale(1);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        /* Carousel nav dots */
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        .carousel-dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--outline);
-            transition: background 0.25s, width 0.25s;
-            cursor: pointer;
-            border: none;
-            padding: 0;
-        }
-        .carousel-dot.active {
-            background: var(--primary);
-            width: 18px;
-            border-radius: 3px;
         }
 
         /* ═══════════════════════════════════════════════════
@@ -1081,163 +1018,154 @@
             </div>
         </section>
 
-        <!-- PROJECTS (Horizontal Scroll-Snap Carousel) -->
-        <section style="margin-bottom:56px" id="projects">
-            <h3
-                style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
-                Projects <span class="section-rule"></span></h3>
-
-            <!-- Carousel Container -->
-            <div class="project-carousel" id="project-carousel-scroller">
-
-                <!-- Slide 1: Bio-SentinelX -->
-                <div class="carousel-slide">
-                    <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-sentinel"
-                        style="overflow:hidden;transition:all 0.4s ease-in-out;">
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
-                            <div class="md:col-span-7 flex flex-col justify-between gap-4">
-                                <div>
-                                    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
-                                        <div>
-                                            <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
-                                                Bio-SentinelX</div>
-                                            <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Capstone Research &middot; Dec 2025 &ndash; Mar 2026</div>
-                                        </div>
-                                        <div>
-                                            <span class="award-badge" style="background:rgba(151, 69, 245, 0.12);color:#9745F5;font-weight:700;display:inline-block;padding:3px 10px;">Winner at NIT Durgapur Hackathon</span>
-                                        </div>
-                                    </div>
-                                    <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Engineered</span> multi-provider LLM orchestration middleware (Gemini 2.0, Groq Llama 3, Claude Sonnet, OpenRouter, Ollama) with <span class="kw">CoT reasoning</span>, automatic provider failover, and <span class="kw">LRU prompt caching</span> &mdash; reducing end-to-end inference latency by <span class="kw">40%</span>.</span></li>
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Architected</span> dual-embedding <span class="kw">RAG pipeline</span> (Supabase pgvector, hybrid dense + sparse retrieval, TF-IDF chunking, 3-tier context memory) with real-time retrieval across <span class="kw">OpenAlex (200M+ works)</span>, PubMed, WHO/CDC, ClinicalTrials.gov.</span></li>
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Deployed</span> stacked ensemble (XGBoost + RF + NN, <span class="kw">98.37% accuracy</span>, 11 classes) with in-browser <span class="kw">TFLite quantised inference</span>; containerised via Docker + Kafka, shipping <span class="kw">155+ zero-downtime releases</span> via GitHub Actions CI/CD.</span></li>
-                                    </ul>
-                                </div>
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
-                                    <div style="display:flex;flex-wrap:wrap;gap:4px">
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">React 19</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">FastAPI</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Supabase</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">TFLite</span>
-                                    </div>
-                                    <div style="display:flex;gap:8px">
-                                        <a href="https://github.com/gaur-avvv/Bio-SentinelX" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
-                                        <a href="https://bio-sentinel-x.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-sentinel-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:col-span-5 flex items-center justify-center">
-                                <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;position:relative;">
-                                    <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                    <div class="reveal-layer">
-                                        <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 2: Arogya AI -->
-                <div class="carousel-slide">
-                    <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-arogya"
-                        style="overflow:hidden;transition:all 0.4s ease-in-out;">
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
-                            <div class="md:col-span-7 flex flex-col justify-between gap-4">
-                                <div>
-                                    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
-                                        <div>
-                                            <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
-                                                Arogya AI</div>
-                                            <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Research Project &middot; Aug 2025 &ndash; Nov 2025</div>
-                                        </div>
-                                    </div>
-                                    <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Developed</span> a multi-class radiological AI diagnostic platform classifying 15 chest conditions with <span class="kw">94.2% accuracy</span> using DenseNet-121 + attention pooling on NIH CXR-14.</span></li>
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Integrated</span> Grad-CAM heatmap overlays for radiologist-interpretable explainability and <span class="kw">uncertainty quantification</span> via Monte Carlo Dropout.</span></li>
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Deployed</span> as a FastAPI microservice with DICOM support, React 18 frontend, and <span class="kw">HIPAA-aligned</span> data handling pipelines.</span></li>
-                                    </ul>
-                                </div>
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
-                                    <div style="display:flex;flex-wrap:wrap;gap:4px">
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">PyTorch</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">DenseNet</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">FastAPI</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">DICOM</span>
-                                    </div>
-                                    <div style="display:flex;gap:8px">
-                                        <a href="https://github.com/gaur-avvv/Arogya-AI" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:col-span-5 flex items-center justify-center">
-                                <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;position:relative;">
-                                    <img src="arogya-ai.png" alt="Arogya AI" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                    <div class="reveal-layer">
-                                        <img src="arogya-ai.png" alt="Arogya AI" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: ShakeAlert -->
-                <div class="carousel-slide">
-                    <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-shake"
-                        style="overflow:hidden;transition:all 0.4s ease-in-out;">
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
-                            <div class="md:col-span-7 flex flex-col justify-between gap-4">
-                                <div>
-                                    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
-                                        <div>
-                                            <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
-                                                ShakeAlert</div>
-                                            <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">CDMM VIT Internship &middot; May 2025 &ndash; Jul 2025</div>
-                                        </div>
-                                    </div>
-                                    <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Built</span> a full-stack <span class="kw">earthquake early warning system</span> for India &mdash; low-latency seismic telemetry parsing with real-time <span class="kw">Azure Maps</span> coordinate dispatch and alerting.</span></li>
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Integrated</span> <span class="kw">Firebase Firestore</span> streaming pipelines with <span class="kw">Pandas</span>-based signal anomaly identification against live seismic sensor feeds from India's NDMA network.</span></li>
-                                        <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Implemented</span> <span class="kw">Python Seismology APIs</span> to classify P-wave and S-wave arrivals, enabling sub-second alert dispatch to potentially affected regions.</span></li>
-                                    </ul>
-                                </div>
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
-                                    <div style="display:flex;flex-wrap:wrap;gap:4px">
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Firebase</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Azure Maps</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Pandas</span>
-                                        <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Python</span>
-                                    </div>
-                                    <div style="display:flex;gap:8px">
-                                        <a href="https://github.com/rohit29032005/detectordemo" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
-                                        <a href="https://detectordemo.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-shake-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:col-span-5 flex items-center justify-center">
-                                <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;position:relative;">
-                                    <img src="shake-alert.png" alt="ShakeAlert" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                    <div class="reveal-layer">
-                                        <img src="shake-alert.png" alt="ShakeAlert" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div><!-- end .project-carousel -->
-
-            <!-- Carousel indicator dots -->
-            <div class="carousel-dots" id="carousel-dots">
-                <button class="carousel-dot active" data-slide="0" aria-label="Project 1"></button>
-                <button class="carousel-dot" data-slide="1" aria-label="Project 2"></button>
-                <button class="carousel-dot" data-slide="2" aria-label="Project 3"></button>
-            </div>
-
-        </section>
-
+        <!-- PROJECTS -->
+        <section style="margin-bottom:56px" id="projects">
+            <h3
+                style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
+                Projects <span class="section-rule"></span></h3>
+            <div style="display:flex;flex-direction:column;gap:20px">
+
+                <!-- Bio-SentinelX -->
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-sentinel"
+                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
+                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
+                            <div>
+                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+                                    <div>
+                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+                                            Bio-SentinelX</div>
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Capstone Research &middot; Dec 2025 &ndash; Mar 2026</div>
+                                    </div>
+                                    <div>
+                                        <span class="award-badge" style="background:rgba(151, 69, 245, 0.12);color:#9745F5;font-weight:700;display:inline-block;padding:3px 10px;">Winner at NIT Durgapur Hackathon</span>
+                                    </div>
+                                </div>
+                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Engineered</span> multi-provider LLM orchestration middleware (Gemini 2.0, Groq Llama 3, Claude Sonnet, OpenRouter, Ollama) with <span class="kw">CoT reasoning</span>, automatic provider failover, and <span class="kw">LRU prompt caching</span> &mdash; reducing end-to-end inference latency by <span class="kw">40%</span>.</span></li>
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Architected</span> dual-embedding <span class="kw">RAG pipeline</span> (Supabase pgvector, hybrid dense + sparse retrieval, TF-IDF chunking, 3-tier context memory) with real-time retrieval across <span class="kw">OpenAlex (200M+ works)</span>, PubMed, WHO/CDC, ClinicalTrials.gov.</span></li>
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Deployed</span> stacked ensemble (XGBoost + RF + NN, <span class="kw">98.37% accuracy</span>, 11 classes) with in-browser <span class="kw">TFLite quantised inference</span>; containerised via Docker + Kafka, shipping <span class="kw">155+ zero-downtime releases</span> via GitHub Actions CI/CD.</span></li>
+                                </ul>
+                            </div>
+                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+                                <div style="display:flex;flex-wrap:wrap;gap:4px">
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">React 19</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">FastAPI</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Supabase</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">TFLite</span>
+                                </div>
+                                <div style="display:flex;gap:8px">
+                                    <a href="https://github.com/gaur-avvv/Bio-SentinelX" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+                                    <a href="https://bio-sentinel-x.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-sentinel-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 flex items-center justify-center">
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;position:relative;">
+                                <!-- Base Layer (Darkened/Grayscale) -->
+                                <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+                                <div class="reveal-layer">
+                                    <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arogya AI -->
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-arogya"
+                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
+                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
+                            <div>
+                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+                                    <div>
+                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+                                            Arogya AI</div>
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Research Project &middot; Aug 2025 &ndash; Nov 2025</div>
+                                    </div>
+                                </div>
+                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Designed</span> a dual-engine AI architecture fusing a <span class="kw">Random Forest classifier (99%+ accuracy</span>, 819 features, SMOTE-balanced 4,201&ndash;20,748 samples) with <span class="kw">Gemini 2.5 Pro</span> for contextualised, multi-label prediction across <span class="kw">399 ICD-mapped diseases</span>.</span></li>
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Developed</span> an 807-dim <span class="kw">TF-IDF NLP vectorisation</span> pipeline with high-precision cosine similarity matching, incorporating <span class="kw">XAI/SHAP</span> explainability to provide transparent insights into complex medical model predictions.</span></li>
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Engineered</span> secure <span class="kw">RBAC</span> practitioner and patient portals, implementing clinical safety guardrails that automatically <span class="kw">mask low-confidence predictions</span> to ensure patient data integrity.</span></li>
+                                </ul>
+                            </div>
+                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+                                <div style="display:flex;flex-wrap:wrap;gap:4px">
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Scikit-learn</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Gemini 2.5 Pro</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SHAP</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SMOTE</span>
+                                </div>
+                                <div style="display:flex;gap:8px">
+                                    <a href="https://github.com/gaur-avvv/Arogya-AI" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+                                    <a href="https://arogya-ai-mu.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-arogya-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 flex items-center justify-center">
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;position:relative;">
+                                <!-- Base Layer (Darkened/Grayscale) -->
+                                <img src="arogya-ai.png" alt="Arogya AI" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+                                <div class="reveal-layer">
+                                    <img src="arogya-ai.png" alt="Arogya AI" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ShakeAlert -->
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-shake"
+                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
+                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
+                            <div>
+                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+                                    <div>
+                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+                                            ShakeAlert</div>
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">CDMM VIT Internship &middot; May 2025 &ndash; Jul 2025</div>
+                                    </div>
+                                </div>
+                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Built</span> a full-stack <span class="kw">earthquake early warning system</span> for India &mdash; low-latency seismic telemetry parsing with real-time <span class="kw">Azure Maps</span> coordinate dispatch and alerting.</span></li>
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Integrated</span> <span class="kw">Firebase Firestore</span> streaming pipelines with <span class="kw">Pandas</span>-based signal anomaly identification against live seismic sensor feeds from India's NDMA network.</span></li>
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Implemented</span> <span class="kw">Python Seismology APIs</span> to classify P-wave and S-wave arrivals, enabling sub-second alert dispatch to potentially affected regions.</span></li>
+                                </ul>
+                            </div>
+                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+                                <div style="display:flex;flex-wrap:wrap;gap:4px">
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Firebase</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Azure Maps</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Pandas</span>
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Python</span>
+                                </div>
+                                <div style="display:flex;gap:8px">
+                                    <a href="https://github.com/rohit29032005/detectordemo" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+                                    <a href="https://detectordemo.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-shake-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5 flex items-center justify-center">
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;position:relative;">
+                                <!-- Base Layer (Darkened/Grayscale) -->
+                                <img src="shake-alert.png" alt="ShakeAlert" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+                                <div class="reveal-layer">
+                                    <img src="shake-alert.png" alt="ShakeAlert" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
         <!-- EXPERIENCE -->
         <section style="margin-bottom:56px" id="experience">
             <h3
@@ -2252,31 +2180,39 @@
                     }, 4200);
                 }
 
-                // ── 3D card tilt on pointer move ──
+                // ── 3D card tilt on pointer move (Smooth 120Hz Animation) ──
                 document.querySelectorAll('.bento-card').forEach(function (card) {
+                    var tiltFrame;
                     card.addEventListener('pointermove', function (e) {
+                        if (tiltFrame) cancelAnimationFrame(tiltFrame);
                         var r = card.getBoundingClientRect();
                         var cx = r.left + r.width / 2;
                         var cy = r.top + r.height / 2;
                         var dx = (e.clientX - cx) / (r.width / 2);
                         var dy = (e.clientY - cy) / (r.height / 2);
-                        card.style.transform = 'perspective(700px) rotateY(' + (dx * 5) + 'deg) rotateX(' + (-dy * 5) + 'deg) translateZ(6px)';
+                        tiltFrame = requestAnimationFrame(function() {
+                            card.style.transform = 'perspective(700px) rotateY(' + (dx * 5) + 'deg) rotateX(' + (-dy * 5) + 'deg) translateZ(6px)';
+                        });
                     }, { passive: true });
                     card.addEventListener('pointerleave', function () {
+                        if (tiltFrame) cancelAnimationFrame(tiltFrame);
                         card.style.transform = '';
                     });
                 });
 
-                // ── Interactive Space-Time Curve Mesh Backdrop canvas ──
+                // ── Interactive Space-Time Curve Mesh Backdrop canvas (Optimized) ──
                 var canvas = document.getElementById('backdrop-canvas');
                 var ctx = canvas.getContext('2d');
                 var dpr = window.devicePixelRatio || 1;
                 var mouse = { x: null, y: null };
+                var needsRedraw = true;
+                var settleFrames = 0;
 
                 function resizeCanvas() {
                     canvas.width = window.innerWidth * dpr;
                     canvas.height = window.innerHeight * dpr;
                     ctx.scale(dpr, dpr);
+                    needsRedraw = true;
                 }
                 window.addEventListener('resize', resizeCanvas);
                 resizeCanvas();
@@ -2284,17 +2220,25 @@
                 window.addEventListener('mousemove', function (e) {
                     mouse.x = e.clientX;
                     mouse.y = e.clientY;
-                });
+                    needsRedraw = true;
+                    settleFrames = 30; // Animates for 30 frames to settle
+                }, { passive: true });
 
                 window.addEventListener('mouseleave', function () {
                     mouse.x = null;
                     mouse.y = null;
-                });
+                    needsRedraw = true;
+                    settleFrames = 30;
+                }, { passive: true });
+
+                window.addEventListener('scroll', function () {
+                    needsRedraw = true;
+                    settleFrames = 10;
+                }, { passive: true });
 
                 // Draw deformed space-time grid curvature line
-                function drawSpaceTimeLine(x1, y1, x2, y2, isVertical) {
+                function drawSpaceTimeLine(x1, y1, x2, y2, steps) {
                     ctx.beginPath();
-                    var steps = 28;
                     for (var i = 0; i <= steps; i++) {
                         var t = i / steps;
                         var vx = x1 + (x2 - x1) * t;
@@ -2307,7 +2251,7 @@
                             var limit = 160; // radius of space-time gravity distortion
                             if (dist < limit) {
                                 var force = (limit - dist) / limit;
-                                var pull = force * force * 30; // pull mesh towards the pointer coordinate
+                                var pull = force * force * 30; // pull mesh towards pointer
                                 vx += (dx / dist) * pull;
                                 vy += (dy / dist) * pull;
                             }
@@ -2320,23 +2264,31 @@
                 }
 
                 function loop() {
-                    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
-                    var w = canvas.width / dpr;
-                    var h = canvas.height / dpr;
+                    if (needsRedraw || settleFrames > 0) {
+                        if (settleFrames > 0) settleFrames--;
+                        if (settleFrames === 0 && mouse.x === null) needsRedraw = false;
 
-                    ctx.strokeStyle = document.documentElement.classList.contains('dark') ? 'rgba(39, 39, 42, 0.16)' : 'rgba(212, 212, 216, 0.32)';
-                    ctx.lineWidth = 0.65;
+                        ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+                        var w = canvas.width / dpr;
+                        var h = canvas.height / dpr;
 
-                    var step = 36;
-                    // Draw vertical mesh lines
-                    for (var x = 0; x <= w; x += step) {
-                        drawSpaceTimeLine(x, 0, x, h, true);
+                        ctx.strokeStyle = document.documentElement.classList.contains('dark') ? 'rgba(39, 39, 42, 0.16)' : 'rgba(212, 212, 216, 0.32)';
+                        ctx.lineWidth = 0.65;
+
+                        // Simplify mesh on mobile devices to save CPU and run smoothly
+                        var isMobile = ('ontouchstart' in window) || (window.innerWidth < 768);
+                        var step = isMobile ? 54 : 36;
+                        var steps = isMobile ? 18 : 28;
+
+                        // Draw vertical mesh lines
+                        for (var x = 0; x <= w; x += step) {
+                            drawSpaceTimeLine(x, 0, x, h, steps);
+                        }
+                        // Draw horizontal mesh lines
+                        for (var y = 0; y <= h; y += step) {
+                            drawSpaceTimeLine(0, y, w, y, steps);
+                        }
                     }
-                    // Draw horizontal mesh lines
-                    for (var y = 0; y <= h; y += step) {
-                        drawSpaceTimeLine(0, y, w, y, false);
-                    }
-
                     requestAnimationFrame(loop);
                 }
                 loop();
@@ -2359,69 +2311,6 @@
                         if (target) target.scrollIntoView({ behavior: 'smooth' });
                     });
                 });
-
-                // ── Project Carousel Dots + Scroll-Sync ──
-                var carousel = document.getElementById('project-carousel-scroller');
-                var carouselDots = document.querySelectorAll('#carousel-dots .carousel-dot');
-                if (carousel && carouselDots.length) {
-                    var userInteracting = false;
-                    var interactTimeout;
-                    function setInteracting() {
-                        userInteracting = true;
-                        clearTimeout(interactTimeout);
-                        interactTimeout = setTimeout(function() {
-                            userInteracting = false;
-                        }, 2000);
-                    }
-                    carousel.addEventListener('touchstart', setInteracting, { passive: true });
-                    carousel.addEventListener('mousedown', setInteracting, { passive: true });
-
-                    // Update dots on scroll
-                    carousel.addEventListener('scroll', function() {
-                        var idx = Math.round(carousel.scrollLeft / (carousel.clientWidth || 1));
-                        carouselDots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
-                    }, { passive: true });
-
-                    // Click dot -> scroll to slide
-                    carouselDots.forEach(function(dot) {
-                        dot.addEventListener('click', function() {
-                            setInteracting();
-                            var slide = parseInt(dot.dataset.slide, 10);
-                            carousel.scrollTo({ left: slide * carousel.clientWidth, behavior: 'smooth' });
-                        });
-                    });
-
-                    // Auto scroll carousel horizontally when user scrolls down the page vertically
-                    window.addEventListener('scroll', function() {
-                        if (userInteracting) return;
-                        var rect = carousel.getBoundingClientRect();
-                        var viewHeight = window.innerHeight;
-                        // If carousel is visible on screen
-                        if (rect.top < viewHeight && rect.bottom > 0) {
-                            var totalDist = viewHeight + rect.height;
-                            var scrolledDist = viewHeight - rect.top;
-                            var pct = scrolledDist / totalDist;
-                            pct = Math.max(0, Math.min(1, pct));
-                            var maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                            carousel.scrollLeft = pct * maxScroll;
-                        }
-                    }, { passive: true });
-
-                    // Fallback for browsers without scroll-driven animations
-                    if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
-                        var slides = carousel.querySelectorAll('.carousel-slide');
-                        var slideObs = new IntersectionObserver(function(entries) {
-                            entries.forEach(function(e) {
-                                e.target.classList.toggle('slide-visible', e.isIntersecting);
-                            });
-                        }, { root: carousel, threshold: 0.5 });
-                        slides.forEach(function(sl) {
-                            sl.classList.remove('slide-visible');
-                            slideObs.observe(sl);
-                        });
-                        if (slides[0]) slides[0].classList.add('slide-visible');
-                    }
-                }
 
                 // ── Tooltip fallback: getBoundingClientRect for Firefox/Safari ──
                 if (!CSS.supports('anchor-name: --foo')) {
