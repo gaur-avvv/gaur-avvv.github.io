@@ -428,6 +428,64 @@
             border-color: var(--primary) !important;
         }
 
+
+        /* Custom thin Scrollbar adaptive to contrast and theme */
+        :root {
+            scrollbar-width: thin;
+            scrollbar-color: var(--outline) transparent;
+        }
+        
+        /* Branded form element highlights */
+        body {
+            accent-color: var(--brand);
+        }
+        
+        /* Non-aggressive user form validation after interaction */
+        #contact-form input:user-invalid, 
+        #contact-form textarea:user-invalid {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+        }
+        #contact-form input:user-valid, 
+        #contact-form textarea:user-valid {
+            border-color: #10b981 !important;
+        }
+        
+        /* Compositor-driven native CSS Scroll progress timeline */
+        @supports (animation-timeline: scroll()) {
+            @keyframes scroll-progress-anim {
+                from { transform: scaleX(0); }
+                to { transform: scaleX(1); }
+            }
+            #scroll-progress {
+                width: 100% !important;
+                transform-origin: left;
+                animation: scroll-progress-anim auto linear;
+                animation-timeline: scroll(root);
+            }
+        }
+        
+        /* Native CSS GPU-accelerated Scroll Reveal Animations */
+        @media (prefers-reduced-motion: no-preference) {
+            @supports ((animation-timeline: view()) and (animation-range: entry)) {
+                @keyframes reveal-card {
+                    from {
+                        opacity: 0.2;
+                        transform: translateY(14px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                .reveal-on-scroll {
+                    animation: reveal-card auto both;
+                    animation-timeline: view();
+                    animation-range: entry 6% cover 22%;
+                }
+            }
+        }
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&amp;family=Encode+Sans:wdth,wght@125,100..900&amp;family=Italiana&amp;family=Space+Grotesk:wght@300..700&amp;family=Syne:wght@400..800&amp;family=Yeseva+One&amp;display=swap" rel="stylesheet">
 </head>
@@ -557,7 +615,7 @@
             <h3
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
                 About <span class="section-rule"></span></h3>
-            <div class="bento-card rounded-2xl" style="padding:22px;">
+            <div class="bento-card reveal-on-scroll rounded-2xl" style="padding:22px;">
                 <ul
                     style="margin:0;padding:0;list-style:none;color:var(--on-sv);font-size:.84rem;line-height:1.75;display:flex;flex-direction:column;gap:8px;">
                     <li style="display:flex;gap:10px;"><span
@@ -586,7 +644,7 @@
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
                 Certifications <span class="section-rule"></span></h3>
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px">
-                <div class="bento-card rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">verified</span>
                     <div>
@@ -596,7 +654,7 @@
                             Engineer &middot; Google Cloud &middot; 2026</div>
                     </div>
                 </div>
-                <div class="bento-card rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">smart_toy</span>
                     <div>
@@ -605,7 +663,7 @@
                         <div style="font-size:.6rem;color:var(--secondary);margin-top:2px">IBM &middot; 2026</div>
                     </div>
                 </div>
-                <div class="bento-card rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">psychology</span>
                     <div>
@@ -615,7 +673,7 @@
                             2026</div>
                     </div>
                 </div>
-                <div class="bento-card rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">cloud</span>
                     <div>
@@ -625,7 +683,7 @@
                             Foundations &middot; Oracle &middot; 2025</div>
                     </div>
                 </div>
-                <div class="bento-card rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
+                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:14px;display:flex;align-items:center;gap:12px"><span
                         class="material-symbols-outlined"
                         style="font-size:22px;color:var(--primary);flex-shrink:0">search</span>
                     <div>
@@ -646,7 +704,7 @@
             <div style="display:flex;flex-direction:column;gap:20px">
 
                 <!-- Bio-SentinelX -->
-                <div class="bento-card project-card blueprint-grid rounded-2xl proj-sentinel"
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-sentinel"
                     style="overflow:hidden;transition:all 0.4s ease-in-out;">
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
                         <div class="md:col-span-7 flex flex-col justify-between gap-4">
@@ -689,7 +747,7 @@
                 </div>
 
                 <!-- Arogya AI -->
-                <div class="bento-card project-card blueprint-grid rounded-2xl proj-arogya"
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-arogya"
                     style="overflow:hidden;transition:all 0.4s ease-in-out;">
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
                         <div class="md:col-span-7 flex flex-col justify-between gap-4">
@@ -729,7 +787,7 @@
                 </div>
 
                 <!-- ShakeAlert -->
-                <div class="bento-card project-card blueprint-grid rounded-2xl proj-shake"
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-shake"
                     style="overflow:hidden;transition:all 0.4s ease-in-out;">
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
                         <div class="md:col-span-7 flex flex-col justify-between gap-4">
@@ -777,7 +835,7 @@
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
                 Experience <span class="section-rule"></span></h3>
             <div style="display:flex;flex-direction:column;gap:28px">
-                <div style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
+                <div class="reveal-on-scroll" style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
                     <div
                         style="position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--primary)">
                     </div>
@@ -798,7 +856,7 @@
                             style="color:var(--on-surface)">MapQuest &ndash; The GIS Treasure Hunt</strong> (Sept 2025)
                         as the club's flagship event.</p>
                 </div>
-                <div style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
+                <div class="reveal-on-scroll" style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
                     <div
                         style="position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;border:1px solid var(--outline);background:var(--bg)">
                     </div>
@@ -818,7 +876,7 @@
                         earthquake early warning system for India. Built telemetry parsing pipelines and Pandas-based
                         signal anomaly identification from live seismic feeds.</p>
                 </div>
-                <div style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
+                <div class="reveal-on-scroll" style="position:relative;padding-left:28px;border-left:1px solid var(--outline)">
                     <div
                         style="position:absolute;left:-5px;top:4px;width:10px;height:10px;border-radius:50%;border:1px solid var(--outline);background:var(--bg)">
                     </div>
@@ -846,7 +904,7 @@
                 Skills <span class="section-rule"></span></h3>
             <div style="display:flex;flex-direction:column;gap:24px">
                 <!-- 1. ML / AI / LLM (Full Width) -->
-                <div>
+                <div class="reveal-on-scroll">
                     <div
                         style="font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);border-left:2px solid var(--brand);padding-left:8px;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;line-height:1">
                         <span class="material-symbols-outlined"
@@ -881,7 +939,7 @@
                     <!-- Left Column -->
                     <div style="display:flex;flex-direction:column;gap:24px">
                         <!-- MLOps / Cloud / Stack -->
-                        <div>
+                        <div class="reveal-on-scroll">
                             <div
                                 style="font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);border-left:2px solid var(--brand);padding-left:8px;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;line-height:1">
                                 <span class="material-symbols-outlined"
@@ -902,7 +960,7 @@
                         </div>
 
                         <!-- Field of Interest -->
-                        <div>
+                        <div class="reveal-on-scroll">
                             <div
                                 style="font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);border-left:2px solid var(--brand);padding-left:8px;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;line-height:1">
                                 <span class="material-symbols-outlined"
@@ -930,7 +988,7 @@
                     <!-- Right Column -->
                     <div style="display:flex;flex-direction:column;gap:24px">
                         <!-- Languages & Databases -->
-                        <div>
+                        <div class="reveal-on-scroll">
                             <div
                                 style="font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);border-left:2px solid var(--brand);padding-left:8px;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;line-height:1">
                                 <span class="material-symbols-outlined"
@@ -959,7 +1017,7 @@
                         </div>
 
                         <!-- Professional Skills -->
-                        <div>
+                        <div class="reveal-on-scroll">
                             <div
                                 style="font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:var(--secondary);border-left:2px solid var(--brand);padding-left:8px;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;line-height:1">
                                 <span class="material-symbols-outlined"
@@ -984,7 +1042,7 @@
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
                 Distinctions &amp; Awards <span class="section-rule"></span></h3>
             <div style="display:flex;flex-direction:column;gap:10px">
-                <div class="bento-card rounded-xl"
+                <div class="bento-card reveal-on-scroll rounded-xl"
                     style="padding:14px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
                     <div>
                         <div
@@ -998,7 +1056,7 @@
                             9.5/10</span><span style="font-size:.65rem;font-family:monospace;color:var(--secondary)">May
                             2026</span></div>
                 </div>
-                <div class="bento-card rounded-xl"
+                <div class="bento-card reveal-on-scroll rounded-xl"
                     style="padding:14px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
                     <div>
                         <div
@@ -1011,7 +1069,7 @@
                             style="background:rgba(151, 69, 245, 0.12);color:#9745F5">Grand Finalist</span><span
                             style="font-size:.65rem;font-family:monospace;color:var(--secondary)">Mar 2026</span></div>
                 </div>
-                <div class="bento-card rounded-xl"
+                <div class="bento-card reveal-on-scroll rounded-xl"
                     style="padding:14px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
                     <div>
                         <div
@@ -1024,7 +1082,7 @@
                             style="background:rgba(151, 69, 245, 0.12);color:#9745F5">Grand Finalist</span><span
                             style="font-size:.65rem;font-family:monospace;color:var(--secondary)">Mar 2026</span></div>
                 </div>
-                <div class="bento-card rounded-xl"
+                <div class="bento-card reveal-on-scroll rounded-xl"
                     style="padding:14px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
                     <div>
                         <div
@@ -1037,7 +1095,7 @@
                             style="background:rgba(151, 69, 245, 0.12);color:#9745F5">Phase 2 Qualifier</span><span
                             style="font-size:.65rem;font-family:monospace;color:var(--secondary)">Mar 2026</span></div>
                 </div>
-                <div class="bento-card rounded-xl"
+                <div class="bento-card reveal-on-scroll rounded-xl"
                     style="padding:14px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
                     <div>
                         <div
@@ -1060,7 +1118,7 @@
                 style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
                 GitHub Activity <span class="section-rule"></span></h3>
             <!-- Real GitHub contribution heatmap via ghchart.rshah.org -->
-            <div class="bento-card rounded-2xl" style="padding:16px 18px">
+            <div class="bento-card reveal-on-scroll rounded-2xl" style="padding:16px 18px">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
                     <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--secondary)">
                         Contribution Calendar &middot; github.com/gaur-avvv</div>
@@ -1081,12 +1139,12 @@
             </div>
             <!-- Streak stats row -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
-                <div class="bento-card rounded-xl" style="padding:12px;overflow:hidden">
+                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:12px;overflow:hidden">
                     <img src="https://github-readme-streak-stats.herokuapp.com/?user=gaur-avvv&theme=dark&background=12121200&border=27272a&ring=9745f5&fire=9745f5&currStreakLabel=ffffff&sideLabels=a1a1aa&hide_border=true"
                         alt="GitHub streak stats" style="width:100%;height:auto;display:block;border-radius:.25rem"
                         onerror="this.parentElement.style.display='none'">
                 </div>
-                <div class="bento-card rounded-xl" style="padding:12px;overflow:hidden">
+                <div class="bento-card reveal-on-scroll rounded-xl" style="padding:12px;overflow:hidden">
                     <img src="https://github-readme-stats.vercel.app/api?username=gaur-avvv&show_icons=true&theme=dark&bg_color=12121200&border_color=27272a&title_color=ffffff&text_color=a1a1aa&icon_color=9745f5&hide_border=true&rank_icon=github&include_all_commits=true&count_private=true"
                         alt="GitHub stats" style="width:100%;height:auto;display:block;border-radius:.25rem"
                         onerror="this.parentElement.style.display='none'">
@@ -1096,7 +1154,7 @@
 
         <!-- CONTACT -->
         <section style="margin-bottom:56px" id="contact">
-            <div class="bento-card rounded-2xl overflow-hidden"
+            <div class="bento-card reveal-on-scroll rounded-2xl overflow-hidden"
                 style="border:2px solid color-mix(in srgb,var(--primary) 15%,transparent)">
                 <div
                     style="padding:18px 20px;border-bottom:1px solid var(--outline);background:color-mix(in srgb,var(--primary) 4%,transparent);display:flex;justify-content:space-between;align-items:center">
@@ -1209,7 +1267,7 @@
     <div id="command-palette"
         style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);z-index:200;align-items:center;justify-content:center;padding:20px;"
         onclick="window.closeCmdPalette(event)">
-        <div class="bento-card"
+        <div class="bento-card reveal-on-scroll"
             style="width:100%;max-width:500px;border-radius:1rem;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.65);"
             onclick="event.stopPropagation()">
             <div
@@ -1405,14 +1463,7 @@
                     });
                 });
 
-                // ── Active Section Progress Line ──
-                var scrollProgress = document.getElementById('scroll-progress');
-                window.addEventListener('scroll', function () {
-                    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                    var scrolled = (winScroll / height) * 100;
-                    scrollProgress.style.width = scrolled + '%';
-                });
+
 
                 // ── Command Palette (Spotlight Search) ──
                 var cmdPalette = document.getElementById('command-palette');
