@@ -282,6 +282,7 @@
         html:not(.dark) .proj-sentinel:hover {
             background-color: #f1effd !important;
             border-color: var(--brand) !important;
+            box-shadow: 0 12px 40px rgba(151, 69, 245, 0.18);
         }
 
         .proj-arogya {
@@ -297,6 +298,7 @@
         html:not(.dark) .proj-arogya:hover {
             background-color: #f0f7f4 !important;
             border-color: #10b981 !important;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.18);
         }
 
         .proj-shake {
@@ -312,6 +314,7 @@
         html:not(.dark) .proj-shake:hover {
             background-color: #fdf2f2 !important;
             border-color: #ef4444 !important;
+            box-shadow: 0 12px 40px rgba(239, 68, 68, 0.18);
         }
 
         .project-img-wrapper {
@@ -864,7 +867,7 @@
         <!-- BANNER (Parallax) -->
         <div class="banner-parallax-wrapper banner-fade">
             <img alt="Pixel-art waterfall landscape" class="banner-parallax-img"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWwtFzhrfwN2Tp7Cd9HkJDmkRu1hKP6xQkCxOXdq6dbTSaLvAb2i-RBIiim58yFI32YheGoLIoDeaQtxQ-7MiuA6Szdcgh8NxavZ6HcOq838OxOkbQso2HZblKDHNPGfePbqoclnDUTof_R7nmuHPAWdaaljgr4WgSlvkgSzxU8vsBIZ5Toas9_Jqm6Z8hTyw-pGNV6kLJ0FwDdA8FNDBTiZJ-WQLF-rteW0vPbJxuUT5gKp2haBzlrveIPvqE_kuj4A">
+                src="https://media.giphy.com/media/L2XkEUt61Vla0/giphy.gif">
         </div>
 
         <!-- PROFILE -->
@@ -1018,154 +1021,302 @@
             </div>
         </section>
 
-        <!-- PROJECTS -->
-        <section style="margin-bottom:56px" id="projects">
-            <h3
-                style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
-                Projects <span class="section-rule"></span></h3>
-            <div style="display:flex;flex-direction:column;gap:20px">
-
-                <!-- Bio-SentinelX -->
-                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-sentinel"
-                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
-                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
-                            <div>
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
-                                    <div>
-                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
-                                            Bio-SentinelX</div>
-                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Capstone Research &middot; Dec 2025 &ndash; Mar 2026</div>
-                                    </div>
-                                    <div>
-                                        <span class="award-badge" style="background:rgba(151, 69, 245, 0.12);color:#9745F5;font-weight:700;display:inline-block;padding:3px 10px;">Winner at NIT Durgapur Hackathon</span>
-                                    </div>
-                                </div>
-                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Engineered</span> multi-provider LLM orchestration middleware (Gemini 2.0, Groq Llama 3, Claude Sonnet, OpenRouter, Ollama) with <span class="kw">CoT reasoning</span>, automatic provider failover, and <span class="kw">LRU prompt caching</span> &mdash; reducing end-to-end inference latency by <span class="kw">40%</span>.</span></li>
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Architected</span> dual-embedding <span class="kw">RAG pipeline</span> (Supabase pgvector, hybrid dense + sparse retrieval, TF-IDF chunking, 3-tier context memory) with real-time retrieval across <span class="kw">OpenAlex (200M+ works)</span>, PubMed, WHO/CDC, ClinicalTrials.gov.</span></li>
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Deployed</span> stacked ensemble (XGBoost + RF + NN, <span class="kw">98.37% accuracy</span>, 11 classes) with in-browser <span class="kw">TFLite quantised inference</span>; containerised via Docker + Kafka, shipping <span class="kw">155+ zero-downtime releases</span> via GitHub Actions CI/CD.</span></li>
-                                </ul>
-                            </div>
-                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
-                                <div style="display:flex;flex-wrap:wrap;gap:4px">
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">React 19</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">FastAPI</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Supabase</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">TFLite</span>
-                                </div>
-                                <div style="display:flex;gap:8px">
-                                    <a href="https://github.com/gaur-avvv/Bio-SentinelX" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
-                                    <a href="https://bio-sentinel-x.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-sentinel-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:col-span-5 flex items-center justify-center">
-                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;position:relative;">
-                                <!-- Base Layer (Darkened/Grayscale) -->
-                                <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                <!-- Reveal Layer (Full Color Spotlight) -->
-                                <div class="reveal-layer">
-                                    <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Arogya AI -->
-                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-arogya"
-                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
-                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
-                            <div>
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
-                                    <div>
-                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
-                                            Arogya AI</div>
-                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Research Project &middot; Aug 2025 &ndash; Nov 2025</div>
-                                    </div>
-                                </div>
-                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Designed</span> a dual-engine AI architecture fusing a <span class="kw">Random Forest classifier (99%+ accuracy</span>, 819 features, SMOTE-balanced 4,201&ndash;20,748 samples) with <span class="kw">Gemini 2.5 Pro</span> for contextualised, multi-label prediction across <span class="kw">399 ICD-mapped diseases</span>.</span></li>
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Developed</span> an 807-dim <span class="kw">TF-IDF NLP vectorisation</span> pipeline with high-precision cosine similarity matching, incorporating <span class="kw">XAI/SHAP</span> explainability to provide transparent insights into complex medical model predictions.</span></li>
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Engineered</span> secure <span class="kw">RBAC</span> practitioner and patient portals, implementing clinical safety guardrails that automatically <span class="kw">mask low-confidence predictions</span> to ensure patient data integrity.</span></li>
-                                </ul>
-                            </div>
-                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
-                                <div style="display:flex;flex-wrap:wrap;gap:4px">
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Scikit-learn</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Gemini 2.5 Pro</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SHAP</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SMOTE</span>
-                                </div>
-                                <div style="display:flex;gap:8px">
-                                    <a href="https://github.com/gaur-avvv/Arogya-AI" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
-                                    <a href="https://arogya-ai-mu.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-arogya-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:col-span-5 flex items-center justify-center">
-                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;position:relative;">
-                                <!-- Base Layer (Darkened/Grayscale) -->
-                                <img src="arogya-ai.png" alt="Arogya AI" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                <!-- Reveal Layer (Full Color Spotlight) -->
-                                <div class="reveal-layer">
-                                    <img src="arogya-ai.png" alt="Arogya AI" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ShakeAlert -->
-                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-shake"
-                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
-                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
-                            <div>
-                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
-                                    <div>
-                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
-                                            ShakeAlert</div>
-                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">CDMM VIT Internship &middot; May 2025 &ndash; Jul 2025</div>
-                                    </div>
-                                </div>
-                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Built</span> a full-stack <span class="kw">earthquake early warning system</span> for India &mdash; low-latency seismic telemetry parsing with real-time <span class="kw">Azure Maps</span> coordinate dispatch and alerting.</span></li>
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Integrated</span> <span class="kw">Firebase Firestore</span> streaming pipelines with <span class="kw">Pandas</span>-based signal anomaly identification against live seismic sensor feeds from India's NDMA network.</span></li>
-                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">ΓÇó</span><span><span class="kw">Implemented</span> <span class="kw">Python Seismology APIs</span> to classify P-wave and S-wave arrivals, enabling sub-second alert dispatch to potentially affected regions.</span></li>
-                                </ul>
-                            </div>
-                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
-                                <div style="display:flex;flex-wrap:wrap;gap:4px">
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Firebase</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Azure Maps</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Pandas</span>
-                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Python</span>
-                                </div>
-                                <div style="display:flex;gap:8px">
-                                    <a href="https://github.com/rohit29032005/detectordemo" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
-                                    <a href="https://detectordemo.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-shake-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:col-span-5 flex items-center justify-center">
-                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;position:relative;">
-                                <!-- Base Layer (Darkened/Grayscale) -->
-                                <img src="shake-alert.png" alt="ShakeAlert" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                <!-- Reveal Layer (Full Color Spotlight) -->
-                                <div class="reveal-layer">
-                                    <img src="shake-alert.png" alt="ShakeAlert" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        
+        <!-- PROJECTS -->
+
+        <section style="margin-bottom:56px" id="projects">
+
+            <h3
+
+                style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.45rem;color:var(--primary);display:flex;align-items:center;gap:12px;margin-bottom:20px">
+
+                Projects <span class="section-rule"></span></h3>
+
+            <div style="display:flex;flex-direction:column;gap:20px">
+
+
+
+                <!-- Bio-SentinelX -->
+
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-sentinel"
+
+                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
+
+                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
+
+                            <div>
+
+                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+
+                                    <div>
+
+                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+
+                                            Bio-SentinelX</div>
+
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Capstone Research &middot; Dec 2025 &ndash; Mar 2026</div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <span class="award-badge" style="background:rgba(151, 69, 245, 0.12);color:#9745F5;font-weight:700;display:inline-block;padding:3px 10px;">Winner at NIT Durgapur Hackathon</span>
+
+                                    </div>
+
+                                </div>
+
+                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Engineered</span> multi-provider LLM orchestration middleware (Gemini 2.0, Groq Llama 3, Claude Sonnet, OpenRouter, Ollama) with <span class="kw">CoT reasoning</span>, automatic provider failover, and <span class="kw">LRU prompt caching</span> &mdash; reducing end-to-end inference latency by <span class="kw">40%</span>.</span></li>
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Architected</span> dual-embedding <span class="kw">RAG pipeline</span> (Supabase pgvector, hybrid dense + sparse retrieval, TF-IDF chunking, 3-tier context memory) with real-time retrieval across <span class="kw">OpenAlex (200M+ works)</span>, PubMed, WHO/CDC, ClinicalTrials.gov.</span></li>
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Deployed</span> stacked ensemble (XGBoost + RF + NN, <span class="kw">98.37% accuracy</span>, 11 classes) with in-browser <span class="kw">TFLite quantised inference</span>; containerised via Docker + Kafka, shipping <span class="kw">155+ zero-downtime releases</span> via GitHub Actions CI/CD.</span></li>
+
+                                </ul>
+
+                            </div>
+
+                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+
+                                <div style="display:flex;flex-wrap:wrap;gap:4px">
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">React 19</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">FastAPI</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Supabase</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">TFLite</span>
+
+                                </div>
+
+                                <div style="display:flex;gap:8px">
+
+                                    <a href="https://github.com/gaur-avvv/Bio-SentinelX" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+
+                                    <a href="https://bio-sentinel-x.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-sentinel-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="md:col-span-5 flex items-center justify-center">
+
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;position:relative;">
+
+                                <!-- Base Layer (Darkened/Grayscale) -->
+
+                                <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+
+                                <div class="reveal-layer">
+
+                                    <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Arogya AI -->
+
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-arogya"
+
+                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
+
+                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
+
+                            <div>
+
+                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+
+                                    <div>
+
+                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+
+                                            Arogya AI</div>
+
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">Research Project &middot; Aug 2025 &ndash; Nov 2025</div>
+
+                                    </div>
+
+                                </div>
+
+                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Designed</span> a dual-engine AI architecture fusing a <span class="kw">Random Forest classifier (99%+ accuracy</span>, 819 features, SMOTE-balanced 4,201&ndash;20,748 samples) with <span class="kw">Gemini 2.5 Pro</span> for contextualised, multi-label prediction across <span class="kw">399 ICD-mapped diseases</span>.</span></li>
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Developed</span> an 807-dim <span class="kw">TF-IDF NLP vectorisation</span> pipeline with high-precision cosine similarity matching, incorporating <span class="kw">XAI/SHAP</span> explainability to provide transparent insights into complex medical model predictions.</span></li>
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Engineered</span> secure <span class="kw">RBAC</span> practitioner and patient portals, implementing clinical safety guardrails that automatically <span class="kw">mask low-confidence predictions</span> to ensure patient data integrity.</span></li>
+
+                                </ul>
+
+                            </div>
+
+                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+
+                                <div style="display:flex;flex-wrap:wrap;gap:4px">
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Scikit-learn</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Gemini 2.5 Pro</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SHAP</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">SMOTE</span>
+
+                                </div>
+
+                                <div style="display:flex;gap:8px">
+
+                                    <a href="https://github.com/gaur-avvv/Arogya-AI" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+
+                                    <a href="https://arogya-ai-mu.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-arogya-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="md:col-span-5 flex items-center justify-center">
+
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;position:relative;">
+
+                                <!-- Base Layer (Darkened/Grayscale) -->
+
+                                <img src="arogya-ai.png" alt="Arogya AI" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+
+                                <div class="reveal-layer">
+
+                                    <img src="arogya-ai.png" alt="Arogya AI" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ShakeAlert -->
+
+                <div class="bento-card reveal-on-scroll project-card blueprint-grid rounded-2xl proj-shake"
+
+                    style="overflow:hidden;transition:all 0.4s ease-in-out;">
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6" style="padding:22px;">
+
+                        <div class="md:col-span-7 flex flex-col justify-between gap-4">
+
+                            <div>
+
+                                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px">
+
+                                    <div>
+
+                                        <div style="font-family:'Alegreya',serif;font-style:italic;font-size:1.6rem;font-weight:800;color:var(--primary);letter-spacing:-0.01em;">
+
+                                            ShakeAlert</div>
+
+                                        <div style="font-size:.68rem;color:var(--secondary);margin-top:2px">CDMM VIT Internship &middot; May 2025 &ndash; Jul 2025</div>
+
+                                    </div>
+
+                                </div>
+
+                                <ul style="font-family:'Space Grotesk',sans-serif;list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:8px;font-size:.78rem;line-height:1.6;color:var(--on-sv)">
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Built</span> a full-stack <span class="kw">earthquake early warning system</span> for India &mdash; low-latency seismic telemetry parsing with real-time <span class="kw">Azure Maps</span> coordinate dispatch and alerting.</span></li>
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Integrated</span> <span class="kw">Firebase Firestore</span> streaming pipelines with <span class="kw">Pandas</span>-based signal anomaly identification against live seismic sensor feeds from India's NDMA network.</span></li>
+
+                                    <li style="display:flex;gap:8px"><span style="color:var(--primary);font-weight:700;flex-shrink:0">&bull;</span><span><span class="kw">Implemented</span> <span class="kw">Python Seismology APIs</span> to classify P-wave and S-wave arrivals, enabling sub-second alert dispatch to potentially affected regions.</span></li>
+
+                                </ul>
+
+                            </div>
+
+                            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;">
+
+                                <div style="display:flex;flex-wrap:wrap;gap:4px">
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Firebase</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Azure Maps</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Pandas</span>
+
+                                    <span class="pill-tag" style="padding:2px 8px;font-size:.62rem;border-radius:.375rem">Python</span>
+
+                                </div>
+
+                                <div style="display:flex;gap:8px">
+
+                                    <a href="https://github.com/rohit29032005/detectordemo" target="_blank" rel="noopener noreferrer" class="pill-tag nav-sound-link" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">github &#x2197;</a>
+
+                                    <a href="https://detectordemo.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-sound-link btn-shake-live" style="font-size:.76rem;padding:6px 14px;border-radius:9999px;font-weight:500;text-decoration:none">Live &#x2197;</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="md:col-span-5 flex items-center justify-center">
+
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;position:relative;">
+
+                                <!-- Base Layer (Darkened/Grayscale) -->
+
+                                <img src="shake-alert.png" alt="ShakeAlert" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+
+                                <div class="reveal-layer">
+
+                                    <img src="shake-alert.png" alt="ShakeAlert" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </section>
+
+        
+
         <!-- EXPERIENCE -->
         <section style="margin-bottom:56px" id="experience">
             <h3
@@ -1473,25 +1624,25 @@
                         &rarr;</a>
                 </div>
                 <!-- Heatmap grid from ghchart -->
-                <img class="gh-graph-img" src="https://ghchart.rshah.org/9745f5/gaur-avvv"
+                <img class="gh-graph-img" id="gh-chart-img" src="https://ghchart.rshah.org/9745f5/gaur-avvv"
                     alt="GitHub contribution chart for gaur-avvv" title="GitHub Contributions — gaur-avvv"
                     style="width:100%;height:auto;border-radius:.5rem;display:block"
                     onerror="this.style.display='none';document.getElementById('gh-fallback').style.display='block'">
                 <!-- Fallback: activity graph banner -->
                 <div id="gh-fallback" style="display:none">
-                    <img src="https://github-readme-activity-graph.vercel.app/graph?username=gaur-avvv&bg_color=000000&color=9745f5&line=9745f5&point=9745f5&hide_border=true"
+                    <img id="gh-activity-graph" src="https://github-readme-activity-graph.vercel.app/graph?username=gaur-avvv&bg_color=000000&color=9745f5&line=9745f5&point=9745f5&hide_border=true"
                         alt="GitHub activity graph" style="width:100%;border-radius:.5rem;display:block">
                 </div>
             </div>
             <!-- Streak stats row -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
                 <div class="bento-card reveal-on-scroll rounded-xl" style="padding:12px;overflow:hidden">
-                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=gaur-avvv&theme=dark&background=12121200&border=27272a&ring=9745f5&fire=9745f5&currStreakLabel=ffffff&sideLabels=a1a1aa&hide_border=true"
+                    <img id="gh-streak-stats" src="https://github-readme-streak-stats.herokuapp.com/?user=gaur-avvv&theme=dark&background=12121200&border=27272a&ring=9745f5&fire=9745f5&currStreakLabel=ffffff&sideLabels=a1a1aa&hide_border=true"
                         alt="GitHub streak stats" style="width:100%;height:auto;display:block;border-radius:.25rem"
                         onerror="this.parentElement.style.display='none'">
                 </div>
                 <div class="bento-card reveal-on-scroll rounded-xl" style="padding:12px;overflow:hidden">
-                    <img src="https://github-readme-stats.vercel.app/api?username=gaur-avvv&show_icons=true&theme=dark&bg_color=12121200&border_color=27272a&title_color=ffffff&text_color=a1a1aa&icon_color=9745f5&hide_border=true&rank_icon=github&include_all_commits=true&count_private=true"
+                    <img id="gh-readme-stats" src="https://github-readme-stats.vercel.app/api?username=gaur-avvv&show_icons=true&theme=dark&bg_color=12121200&border_color=27272a&title_color=ffffff&text_color=a1a1aa&icon_color=9745f5&hide_border=true&rank_icon=github&include_all_commits=true&count_private=true"
                         alt="GitHub stats" style="width:100%;height:auto;display:block;border-radius:.25rem"
                         onerror="this.parentElement.style.display='none'">
                 </div>
@@ -1697,9 +1848,36 @@
                 // ── Theme Toggle ──
                 var btn = document.getElementById('theme-toggle-btn');
                 var icon = document.getElementById('theme-icon');
+                function updateGitHubWidgetsTheme(isDark) {
+                    var activity = document.getElementById('gh-activity-graph');
+                    var streak = document.getElementById('gh-streak-stats');
+                    var stats = document.getElementById('gh-readme-stats');
+                    var chart = document.getElementById('gh-chart-img');
+
+                    if (isDark) {
+                        if (activity) activity.src = "https://github-readme-activity-graph.vercel.app/graph?username=gaur-avvv&bg_color=000000&color=9745f5&line=9745f5&point=9745f5&hide_border=true";
+                        if (streak) streak.src = "https://github-readme-streak-stats.herokuapp.com/?user=gaur-avvv&theme=dark&background=12121200&border=27272a&ring=9745f5&fire=9745f5&currStreakLabel=ffffff&sideLabels=a1a1aa&hide_border=true";
+                        if (stats) stats.src = "https://github-readme-stats.vercel.app/api?username=gaur-avvv&show_icons=true&theme=dark&bg_color=12121200&border_color=27272a&title_color=ffffff&text_color=a1a1aa&icon_color=9745f5&hide_border=true&rank_icon=github&include_all_commits=true&count_private=true";
+                        if (chart) chart.src = "https://ghchart.rshah.org/9745f5/gaur-avvv";
+                    } else {
+                        if (activity) activity.src = "https://github-readme-activity-graph.vercel.app/graph?username=gaur-avvv&bg_color=ffffff&color=9745f5&line=9745f5&point=9745f5&hide_border=true";
+                        if (streak) streak.src = "https://github-readme-streak-stats.herokuapp.com/?user=gaur-avvv&theme=light&background=ffffff00&border=e4e4e7&ring=9745f5&fire=9745f5&currStreakLabel=18181b&sideLabels=71717a&hide_border=true";
+                        if (stats) stats.src = "https://github-readme-stats.vercel.app/api?username=gaur-avvv&show_icons=true&theme=light&bg_color=ffffff00&border_color=e4e4e7&title_color=18181b&text_color=71717a&icon_color=9745f5&hide_border=true&rank_icon=github&include_all_commits=true&count_private=true";
+                        if (chart) chart.src = "https://ghchart.rshah.org/6b21a8/gaur-avvv";
+                    }
+                }
+
                 function applyTheme(dark) {
-                    if (dark) { document.documentElement.classList.add('dark'); icon.innerText = 'light_mode'; }
-                    else { document.documentElement.classList.remove('dark'); icon.innerText = 'dark_mode'; }
+                    if (dark) { 
+                        document.documentElement.classList.add('dark'); 
+                        icon.innerText = 'light_mode'; 
+                    } else { 
+                        document.documentElement.classList.remove('dark'); 
+                        icon.innerText = 'dark_mode'; 
+                    }
+                    try {
+                        updateGitHubWidgetsTheme(dark);
+                    } catch (e) {}
                 }
                 var saved = localStorage.getItem('theme');
                 applyTheme(saved !== 'light');
