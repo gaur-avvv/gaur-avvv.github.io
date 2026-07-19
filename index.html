@@ -552,6 +552,35 @@
             opacity: 1 !important;
         }
 
+
+        /* Interactive Spotlight Reveal on hover */
+        .reveal-container {
+            position: relative;
+            cursor: crosshair;
+        }
+        .reveal-container .base-layer {
+            filter: grayscale(100%) brightness(35%);
+            transition: filter 0.4s ease;
+        }
+        .reveal-container:hover .base-layer {
+            filter: grayscale(100%) brightness(48%);
+        }
+        .reveal-container .reveal-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            --x: var(--mouse-x, 50%);
+            --y: var(--mouse-y, 50%);
+            clip-path: circle(0px at var(--x) var(--y));
+            transition: clip-path 0.18s ease-out;
+        }
+        .reveal-container:hover .reveal-layer {
+            clip-path: circle(70px at var(--x) var(--y));
+        }
+
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&amp;family=Encode+Sans:wdth,wght@125,100..900&amp;family=Italiana&amp;family=Space+Grotesk:wght@300..700&amp;family=Syne:wght@400..800&amp;family=Yeseva+One&amp;display=swap" rel="stylesheet">
 
@@ -689,7 +718,7 @@
                         href="https://leetcode.com/u/gaur-avvv" target="_blank" rel="noopener noreferrer"><span
                             class="material-symbols-outlined" style="font-size:15px">terminal</span>LeetCode</a>
                     <button id="ai-summarize-btn" class="pill-tag nav-sound-link"
-                        style="padding:9px 18px;font-size:.78rem;font-weight:500;display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--primary);cursor:pointer;border:1px solid var(--outline);border-radius:9999px;">
+                        style="display:none !important;padding:9px 18px;font-size:.78rem;font-weight:500;align-items:center;gap:8px;text-decoration:none;background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--primary);cursor:pointer;border:1px solid var(--outline);border-radius:9999px;">
                         <span class="material-symbols-outlined" style="font-size:15px;color:var(--brand);">smart_toy</span>
                         <span id="ai-btn-text">AI Summarize</span>
                     </button>
@@ -838,8 +867,13 @@
                             </div>
                         </div>
                         <div class="md:col-span-5 flex items-center justify-center">
-                            <div class="project-img-wrapper" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;">
-                                <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#050a15;position:relative;">
+                                <!-- Base Layer (Darkened/Grayscale) -->
+                                <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+                                <div class="reveal-layer">
+                                    <img src="bio-sentinel.png" alt="Bio-SentinelX" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -918,8 +952,13 @@
                             </div>
                         </div>
                         <div class="md:col-span-5 flex items-center justify-center">
-                            <div class="project-img-wrapper" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;">
-                                <img src="shake-alert.png" alt="ShakeAlert" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#120505;position:relative;">
+                                <!-- Base Layer (Darkened/Grayscale) -->
+                                <img src="shake-alert.png" alt="ShakeAlert" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+                                <div class="reveal-layer">
+                                    <img src="shake-alert.png" alt="ShakeAlert" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1842,6 +1881,63 @@
                             aiText.innerHTML = "Gaurav Singh is a highly skilled <strong>Machine Learning Engineer & AI Researcher</strong> specializing in computer vision pipelines and deep learning optimizations. He has built production-grade systems like <strong>Bio-SentinelX</strong> (93% accuracy ML classification), <strong>Arogya AI</strong> (multi-class radiological diagnostics), and <strong>ShakeAlert</strong> (sub-second seismic warning feeds). With expertise spanning PyTorch, Docker, MLOps, and cloud architectures (AWS/GCP), he is fully equipped to deploy robust, low-latency AI pipelines.";
                         }, 600);
                     });
+                }
+
+                
+                // ── Interactive Spotlight mouse tracking ──
+                document.querySelectorAll('.reveal-container').forEach(function (container) {
+                    container.addEventListener('mousemove', function (e) {
+                        var rect = container.getBoundingClientRect();
+                        var x = ((e.clientX - rect.left) / rect.width) * 100;
+                        var y = ((e.clientY - rect.top) / rect.height) * 100;
+                        container.style.setProperty('--mouse-x', x + '%');
+                        container.style.setProperty('--mouse-y', y + '%');
+                    });
+                    container.addEventListener('mouseleave', function () {
+                        container.style.setProperty('--mouse-x', '50%');
+                        container.style.setProperty('--mouse-y', '50%');
+                    });
+                });
+
+                // ── Tactile scroll transition sound & Scroll-spy ──
+                var activeSection = '';
+                var sectionObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            var id = entry.target.getAttribute('id');
+                            if (id && activeSection !== id) {
+                                activeSection = id;
+                                // Update nav links highlights
+                                document.querySelectorAll('nav a').forEach(function (link) {
+                                    if (link.getAttribute('href') === '#' + id) {
+                                        link.style.opacity = '1';
+                                        link.style.fontWeight = '700';
+                                    } else {
+                                        link.style.opacity = '0.55';
+                                        link.style.fontWeight = '500';
+                                    }
+                                });
+                                // Play tactile section scroll chime (low frequency click)
+                                playClickSound(196, 'sine', 0.02);
+                            }
+                        }
+                    });
+                }, { rootMargin: '-20% 0px -60% 0px' });
+
+                document.querySelectorAll('section[id]').forEach(function (section) {
+                    sectionObserver.observe(section);
+                });
+
+                // ── Gemini Nano Conditional Visibility ──
+                if (typeof LanguageModel !== 'undefined') {
+                    LanguageModel.availability().then(function (status) {
+                        if (status !== 'unavailable') {
+                            var btn = document.getElementById('ai-summarize-btn');
+                            if (btn) {
+                                btn.style.setProperty('display', 'inline-flex', 'important');
+                            }
+                        }
+                    }).catch(function () {});
                 }
 
                 // ── Live View Counter Dynamic Ticker ──
