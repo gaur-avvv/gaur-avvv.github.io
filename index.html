@@ -1503,37 +1503,70 @@
                     }
                 });
 
+                var audioCtx = null;
+
+                function getAudioContext() {
+                    if (!audioCtx) {
+                        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                    return audioCtx;
+                }
+
                 function playClickSound(freq, type, duration) {
                     if (!soundEnabled) return;
                     try {
-                        var ctx = new (window.AudioContext || window.webkitAudioContext)();
-                        var osc = ctx.createOscillator();
-                        var gain = ctx.createGain();
-                        osc.type = type || 'sine';
-                        osc.frequency.value = freq || 800;
-                        gain.gain.setValueAtTime(0.07, ctx.currentTime);
-                        gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + duration);
-                        osc.connect(gain);
-                        gain.connect(ctx.destination);
-                        osc.start();
-                        osc.stop(ctx.currentTime + duration);
+                        var ctx = getAudioContext();
+                        var now = ctx.currentTime;
+                        
+                        var osc1 = ctx.createOscillator();
+                        var osc2 = ctx.createOscillator();
+                        var gainNode = ctx.createGain();
+                        var filter = ctx.createBiquadFilter();
+                        
+                        osc1.type = type || 'sine';
+                        osc1.frequency.setValueAtTime(freq || 800, now);
+                        
+                        // Add perfect-fifth overtone for a pleasant organic chime
+                        osc2.type = 'sine';
+                        osc2.frequency.setValueAtTime((freq || 800) * 1.5, now);
+                        
+                        filter.type = 'lowpass';
+                        filter.frequency.setValueAtTime(1100, now);
+                        filter.frequency.exponentialRampToValueAtTime(260, now + duration);
+                        
+                        gainNode.gain.setValueAtTime(0.015, now);
+                        gainNode.gain.exponentialRampToValueAtTime(0.00001, now + duration);
+                        
+                        osc1.connect(gainNode);
+                        osc2.connect(gainNode);
+                        gainNode.connect(filter);
+                        filter.connect(ctx.destination);
+                        
+                        osc1.start(now);
+                        osc2.start(now);
+                        osc1.stop(now + duration);
+                        osc2.stop(now + duration);
                     } catch (e) { }
                 }
 
                 function playMuteSound() {
                     try {
-                        var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                        var ctx = getAudioContext();
+                        var now = ctx.currentTime;
                         var osc = ctx.createOscillator();
                         var gain = ctx.createGain();
-                        osc.type = 'sawtooth';
-                        osc.frequency.setValueAtTime(400, ctx.currentTime);
-                        osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.2);
-                        gain.gain.setValueAtTime(0.05, ctx.currentTime);
-                        gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.2);
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(600, now);
+                        osc.frequency.exponentialRampToValueAtTime(200, now + 0.25);
+                        gain.gain.setValueAtTime(0.012, now);
+                        gain.gain.exponentialRampToValueAtTime(0.00001, now + 0.25);
                         osc.connect(gain);
                         gain.connect(ctx.destination);
-                        osc.start();
-                        osc.stop(ctx.currentTime + 0.2);
+                        osc.start(now);
+                        osc.stop(now + 0.25);
                     } catch (e) { }
                 }
 
@@ -1578,10 +1611,10 @@
                         cmdInput.value = '';
                         cmdPalette.showModal();
                         setTimeout(function () { cmdInput.focus(); }, 50);
-                        // Ascending double-tone arpeggio
-                        playClickSound(500, 'sine', 0.04);
-                        setTimeout(function () { playClickSound(650, 'sine', 0.04); }, 40);
-                        setTimeout(function () { playClickSound(800, 'sine', 0.06); }, 80);
+                        // Ascending major chime arpeggio
+                        playClickSound(523.25, 'sine', 0.2); // C5
+                        setTimeout(function () { playClickSound(659.25, 'sine', 0.2); }, 50); // E5
+                        setTimeout(function () { playClickSound(783.99, 'sine', 0.3); }, 100); // G5
                     }
                 };
 
@@ -1806,9 +1839,21 @@
 
                         // Local/static summary fallback
                         setTimeout(function () {
-                            aiText.innerHTML = "Gaurav Singh is a highly skilled **Machine Learning Engineer & AI Researcher** specializing in computer vision pipelines and deep learning optimizations. He has built production-grade systems like **Bio-SentinelX** (93% accuracy ML classification), **Arogya AI** (multi-class radiological diagnostics), and **ShakeAlert** (sub-second seismic warning feeds). With expertise spanning PyTorch, Docker, MLOps, and cloud architectures (AWS/GCP), he is fully equipped to deploy robust, low-latency AI pipelines.";
+                            aiText.innerHTML = "Gaurav Singh is a highly skilled <strong>Machine Learning Engineer & AI Researcher</strong> specializing in computer vision pipelines and deep learning optimizations. He has built production-grade systems like <strong>Bio-SentinelX</strong> (93% accuracy ML classification), <strong>Arogya AI</strong> (multi-class radiological diagnostics), and <strong>ShakeAlert</strong> (sub-second seismic warning feeds). With expertise spanning PyTorch, Docker, MLOps, and cloud architectures (AWS/GCP), he is fully equipped to deploy robust, low-latency AI pipelines.";
                         }, 600);
                     });
+                }
+
+                // ── Live View Counter Dynamic Ticker ──
+                var liveView = document.getElementById('live-view-counter');
+                if (liveView) {
+                    var count = 2895;
+                    setInterval(function() {
+                        if (Math.random() > 0.45) {
+                            count += Math.floor(Math.random() * 3) + 1;
+                            liveView.textContent = count.toLocaleString();
+                        }
+                    }, 4200);
                 }
 
                 // ── Interactive Space-Time Curve Mesh Backdrop canvas ──
