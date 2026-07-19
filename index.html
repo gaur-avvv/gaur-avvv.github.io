@@ -692,15 +692,12 @@
             scroll-snap-type: x mandatory;
             scroll-snap-stop: always;
             gap: 20px;
-            padding-bottom: 14px;
-            scrollbar-color: color-mix(in srgb, var(--primary) 30%, transparent) transparent;
+            padding-bottom: 0px;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
         }
         .project-carousel::-webkit-scrollbar {
-            height: 4px;
-        }
-        .project-carousel::-webkit-scrollbar-thumb {
-            background: color-mix(in srgb, var(--primary) 35%, transparent);
-            border-radius: 4px;
+            display: none; /* Safari/Chrome */
         }
         .carousel-slide {
             scroll-snap-align: center;
@@ -2367,18 +2364,49 @@
                 var carousel = document.getElementById('project-carousel-scroller');
                 var carouselDots = document.querySelectorAll('#carousel-dots .carousel-dot');
                 if (carousel && carouselDots.length) {
+                    var userInteracting = false;
+                    var interactTimeout;
+                    function setInteracting() {
+                        userInteracting = true;
+                        clearTimeout(interactTimeout);
+                        interactTimeout = setTimeout(function() {
+                            userInteracting = false;
+                        }, 2000);
+                    }
+                    carousel.addEventListener('touchstart', setInteracting, { passive: true });
+                    carousel.addEventListener('mousedown', setInteracting, { passive: true });
+
                     // Update dots on scroll
                     carousel.addEventListener('scroll', function() {
-                        var idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+                        var idx = Math.round(carousel.scrollLeft / (carousel.clientWidth || 1));
                         carouselDots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
                     }, { passive: true });
+
                     // Click dot -> scroll to slide
                     carouselDots.forEach(function(dot) {
                         dot.addEventListener('click', function() {
+                            setInteracting();
                             var slide = parseInt(dot.dataset.slide, 10);
                             carousel.scrollTo({ left: slide * carousel.clientWidth, behavior: 'smooth' });
                         });
                     });
+
+                    // Auto scroll carousel horizontally when user scrolls down the page vertically
+                    window.addEventListener('scroll', function() {
+                        if (userInteracting) return;
+                        var rect = carousel.getBoundingClientRect();
+                        var viewHeight = window.innerHeight;
+                        // If carousel is visible on screen
+                        if (rect.top < viewHeight && rect.bottom > 0) {
+                            var totalDist = viewHeight + rect.height;
+                            var scrolledDist = viewHeight - rect.top;
+                            var pct = scrolledDist / totalDist;
+                            pct = Math.max(0, Math.min(1, pct));
+                            var maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                            carousel.scrollLeft = pct * maxScroll;
+                        }
+                    }, { passive: true });
+
                     // Fallback for browsers without scroll-driven animations
                     if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
                         var slides = carousel.querySelectorAll('.carousel-slide');
@@ -2391,7 +2419,6 @@
                             sl.classList.remove('slide-visible');
                             slideObs.observe(sl);
                         });
-                        // Show first slide immediately
                         if (slides[0]) slides[0].classList.add('slide-visible');
                     }
                 }
