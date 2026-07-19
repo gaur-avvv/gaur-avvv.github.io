@@ -912,8 +912,13 @@
                             </div>
                         </div>
                         <div class="md:col-span-5 flex items-center justify-center">
-                            <div class="project-img-wrapper" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;">
-                                <img src="arogya-ai.png" alt="Arogya AI" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="project-img-wrapper reveal-container" style="width:100%;height:100%;min-height:180px;max-height:220px;overflow:hidden;border-radius:0.75rem;border:1px solid var(--outline);background:#0a1410;position:relative;">
+                                <!-- Base Layer (Darkened/Grayscale) -->
+                                <img src="arogya-ai.png" alt="Arogya AI" class="project-img base-layer" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                <!-- Reveal Layer (Full Color Spotlight) -->
+                                <div class="reveal-layer">
+                                    <img src="arogya-ai.png" alt="Arogya AI" class="project-img" style="width:100%;height:100%;object-fit:cover;display:block;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1525,9 +1530,60 @@
                 var soundToggle = document.getElementById('sound-toggle-btn');
                 var soundIcon = document.getElementById('sound-icon');
 
+                var waterfallNode = null;
+
+                function startWaterfall() {
+                    if (!soundEnabled) return;
+                    try {
+                        var ctx = getAudioContext();
+                        if (waterfallNode) return; // already running
+                        
+                        var bufferSize = ctx.sampleRate * 4; // 4 seconds loop
+                        var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                        var data = buffer.getChannelData(0);
+                        for (var i = 0; i < bufferSize; i++) {
+                            data[i] = Math.random() * 2 - 1;
+                        }
+                        
+                        var source = ctx.createBufferSource();
+                        source.buffer = buffer;
+                        source.loop = true;
+                        
+                        var filter = ctx.createBiquadFilter();
+                        filter.type = 'lowpass';
+                        filter.frequency.setValueAtTime(360, ctx.currentTime); // Soothing deep waterfall rumble
+                        
+                        var gain = ctx.createGain();
+                        gain.gain.setValueAtTime(0.008, ctx.currentTime); // Low, ambient, non-intrusive volume
+                        
+                        source.connect(filter);
+                        filter.connect(gain);
+                        gain.connect(ctx.destination);
+                        
+                        source.start(0);
+                        waterfallNode = source;
+                    } catch (e) {}
+                }
+
+                function stopWaterfall() {
+                    if (waterfallNode) {
+                        try {
+                            waterfallNode.stop();
+                        } catch (e) {}
+                        waterfallNode = null;
+                    }
+                }
+
                 if (localStorage.getItem('sound') === 'enabled') {
                     soundEnabled = true;
                     soundIcon.innerText = 'volume_up';
+                    // Auto-start ambient waterfall on user click anywhere on the page
+                    window.addEventListener('click', function startOnGesture() {
+                        if (soundEnabled) {
+                            startWaterfall();
+                        }
+                        window.removeEventListener('click', startOnGesture);
+                    }, { once: true });
                 }
 
                 soundToggle.addEventListener('click', function () {
@@ -1536,8 +1592,10 @@
                     soundIcon.innerText = soundEnabled ? 'volume_up' : 'volume_off';
                     if (soundEnabled) {
                         playClickSound(600, 'triangle', 0.12);
+                        // Delayed start to let the toggle click finish
+                        setTimeout(startWaterfall, 150);
                     } else {
-                        // Descending mute tone
+                        stopWaterfall();
                         playMuteSound();
                     }
                 });
@@ -1918,7 +1976,7 @@
                                     }
                                 });
                                 // Play tactile section scroll chime (low frequency click)
-                                playClickSound(196, 'sine', 0.02);
+                                playClickSound(293.66, 'sine', 0.06);
                             }
                         }
                     });
